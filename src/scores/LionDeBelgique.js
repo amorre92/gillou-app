@@ -1,12 +1,10 @@
-import React from 'react';
 import Vex from 'vexflow';
-import { StaveNote } from 'vexflow/src/stavenote';
 
 const LionDeBelgique = () => {
 
     // measure 1
     // notes
-    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "qr" }).addDotToAll()
+    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
     let note2_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
 
     // measure 2
@@ -21,7 +19,7 @@ const LionDeBelgique = () => {
     let note3_m3 = new Vex.Flow.StaveNote({ keys: ["e/5"], duration: "16" }).setStemDirection(-1)
     let note4_m3 = new Vex.Flow.StaveNote({ keys: ["f/5"], duration: "16" }).setStemDirection(-1)
     let note5_m3 = new Vex.Flow.StaveNote({ keys: ["g/5"], duration: "8" }).setStemDirection(-1)
-    let note6_m3 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8r" })
+    let note6_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8r" })
     // beams
     let beam1_m3 = new Vex.Flow.Beam([note1_m3, note2_m3, note3_m3, note4_m3]);
     // ties

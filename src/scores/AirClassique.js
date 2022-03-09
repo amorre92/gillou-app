@@ -1,6 +1,4 @@
-import React from 'react';
 import Vex from 'vexflow';
-import { StaveNote } from 'vexflow/src/stavenote';
 
 const AirClassique = () => {
     // measure 1
@@ -26,7 +24,7 @@ const AirClassique = () => {
    return (
         {
             id: 'air-classique',
-            title: 'Air Classique',
+            title: 'Air classique',
             number: 1,
             clef: 'treble',
             keySignature: 'F',

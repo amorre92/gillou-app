@@ -10,8 +10,8 @@ import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
 import NotoFontPack from '../vexflow/NotoFontPack';
 import { Barline } from 'vexflow/src/stavebarline';
 
-const pageWidth = 350
-const keyWidth = 80
+const pageWidth = 370
+const keyWidth = 70
 const zWidth = 20
 
 const Score = props => {
@@ -48,7 +48,7 @@ const Score = props => {
     return (
         <View>
             <View>
-                <Text>{props.sheet.number + ' ' + props.sheet.title}</Text>
+                <Text>{props.sheet.number + ' - ' + props.sheet.title}</Text>
             </View>
             <View>{context.render()}</View>
         </View>
