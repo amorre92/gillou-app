@@ -20,7 +20,6 @@ const Score = props => {
     const context = new ReactNativeSVGContext(NotoFontPack, { width: pageWidth, height: 120 });
 
     const widths = calculateWidths(props.sheet.measures, pageWidth - keyWidth - zWidth)
-    console.log(widths)
 
     // create stave 0 - with key, signature, etc...
     renderStave0(keyWidth, props.sheet.clef, props.sheet.keySignature, props.sheet.timeSignature, context)
@@ -28,7 +27,6 @@ const Score = props => {
     let currentX = keyWidth
 
     props.sheet.measures.forEach((measure) => {
-        console.log(measure.index)
         renderStave(currentX,
             widths[measure.index],
             measure.notes,
@@ -62,7 +60,6 @@ const renderStave0 = (width, clef, keySignature, timeSignature, context) => {
 }
 
 const renderStave = (x, width, notes, context, first, last) => {
-    console.log(last)
     let options = (first) ? { left_bar: false } : {}
     options = (last) ? {...options, right_bar: false} : options
     var stave = new Vex.Flow.Stave(x, 0, width, options)
@@ -87,7 +84,6 @@ const renderTies = (ties, context) => {
 
 const calculateWidths = (measures, availableWidth) => {
 
-    let nbNotes = 0
     let weights = 0
     measures.forEach((measure) => weights = weights + measure.weight)
     let notewidth = availableWidth / weights    
