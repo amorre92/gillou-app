@@ -13,8 +13,7 @@ const EloiACharleroi = () => {
     let beam1_m1 = new Vex.Flow.Beam([note2_m1, note3_m1, note4_m1, note5_m1])
     // ties
     let tie1_m1 = new Vex.Flow.StaveTie({
-        first_note: note2_m1, 
-        last_note: note5_m1
+        first_note: note2_m1
     })
 
     // measure 2
