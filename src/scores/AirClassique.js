@@ -27,21 +27,24 @@ const AirClassique = () => {
         {
             id: 'air-classique',
             title: 'Air Classique',
-            index: 0,
+            number: 1,
             clef: 'treble',
             keySignature: 'F',
             timeSignature: '2/4',
             measures: [
                 {
                     index: 0,
-                    notes: [note1_m1, note2_m1, note3_m1, note4_m1]
+                    notes: [note1_m1, note2_m1, note3_m1, note4_m1], 
+                    weight: 4
                 },
                 {
                     index: 1,
-                    notes: [note1_m2, note2_m2, note3_m2, note4_m2]
+                    notes: [note1_m2, note2_m2, note3_m2, note4_m2], 
+                    weight: 4
                 }
             ],
-            beams: [beam1_m1, beam2_m1, beam1_m2, beam2_m2]
+            beams: [beam1_m1, beam2_m1, beam1_m2, beam2_m2], 
+            ties: []
         }
     )
 }

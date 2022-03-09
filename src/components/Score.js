@@ -42,11 +42,13 @@ const Score = props => {
 
     // Render beams
     renderBeams(props.sheet.beams, context)
+    // Render ties
+    renderTies(props.sheet.ties, context)
 
     return (
         <View>
             <View>
-                <Text>{props.title}</Text>
+                <Text>{props.sheet.number + ' ' + props.sheet.title}</Text>
             </View>
             <View>{context.render()}</View>
         </View>
@@ -79,13 +81,18 @@ const renderBeams = (beams, context) => {
     beams.forEach((beam) => beam.setContext(context).draw())
 }
 
+const renderTies = (ties, context) => {
+    ties.forEach((tie) => tie.setContext(context).draw())
+}
+
 const calculateWidths = (measures, availableWidth) => {
 
     let nbNotes = 0
-    measures.forEach((measure) => nbNotes = nbNotes + measure.notes.length)
-    let notewidth = availableWidth / nbNotes    
+    let weights = 0
+    measures.forEach((measure) => weights = weights + measure.weight)
+    let notewidth = availableWidth / weights    
 
-    return measures.map((measure) => notewidth*measure.notes.length)
+    return measures.map((measure) => notewidth*measure.weight)
 }
 
 
