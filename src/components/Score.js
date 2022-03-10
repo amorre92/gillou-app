@@ -1,20 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import Vex from 'vexflow';
-import { Accidental } from 'vexflow/src/accidental';
-import { Stave } from 'vexflow/src/stave';
-import { StaveNote } from 'vexflow/src/stavenote';
-import { Voice } from 'vexflow/src/voice';
-import { Formatter } from 'vexflow/src/formatter';
 import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
 import NotoFontPack from '../vexflow/NotoFontPack';
 import { Barline } from 'vexflow/src/stavebarline';
+import DoubleClick from 'react-native-double-tap';
 
 const pageWidth = 370
 const keyWidth = 70
 const zWidth = 20
 
 const Score = props => {
+
+    const addToHistoryHandler = () => {
+        props.onAddToHistory(props.sheet.title, props.sheet.number, props.sheet.id);
+    }
 
     // create context
     const context = new ReactNativeSVGContext(NotoFontPack, { width: pageWidth, height: 120 });
@@ -48,7 +48,13 @@ const Score = props => {
             <View>
                 <Text>{props.sheet.number + ' - ' + props.sheet.title}</Text>
             </View>
-            <View>{context.render()}</View>
+            <View>
+                <DoubleClick
+                    doubleTap={addToHistoryHandler}
+                    delay={200}
+                >{context.render()}
+                </DoubleClick>
+            </View>
         </View>
     );
 }
@@ -61,7 +67,7 @@ const renderStave0 = (width, clef, keySignature, timeSignature, context) => {
 
 const renderStave = (x, width, notes, context, first, last) => {
     let options = (first) ? { left_bar: false } : {}
-    options = (last) ? {...options, right_bar: false} : options
+    options = (last) ? { ...options, right_bar: false } : options
     var stave = new Vex.Flow.Stave(x, 0, width, options)
     stave.setContext(context).draw()
     Vex.Flow.Formatter.FormatAndDraw(context, stave, notes);
@@ -69,7 +75,7 @@ const renderStave = (x, width, notes, context, first, last) => {
 }
 
 const renderStaveZ = (x, width, context) => {
-    let staveMeasureZ = new Vex.Flow.Stave(x, 0, width, {right_bar: false, left_bar: false})
+    let staveMeasureZ = new Vex.Flow.Stave(x, 0, width, { right_bar: false, left_bar: false })
     staveMeasureZ.addEndModifier(new Barline(Barline.type.END)).setContext(context).draw()
     return staveMeasureZ
 }
@@ -86,9 +92,9 @@ const calculateWidths = (measures, availableWidth) => {
 
     let weights = 0
     measures.forEach((measure) => weights = weights + measure.weight)
-    let notewidth = availableWidth / weights    
+    let notewidth = availableWidth / weights
 
-    return measures.map((measure) => notewidth*measure.weight)
+    return measures.map((measure) => notewidth * measure.weight)
 }
 
 
