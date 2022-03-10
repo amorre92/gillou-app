@@ -1,10 +1,11 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import Vex from 'vexflow';
 import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
 import NotoFontPack from '../vexflow/NotoFontPack';
 import { Barline } from 'vexflow/src/stavebarline';
 import DoubleClick from 'react-native-double-tap';
+import { Text } from 'react-native-elements';
 
 const pageWidth = 370
 const keyWidth = 70
@@ -45,16 +46,16 @@ const Score = props => {
 
     return (
         <View>
-            <View>
-                <Text>{props.sheet.number + ' - ' + props.sheet.title}</Text>
-            </View>
-            <View>
-                <DoubleClick
-                    doubleTap={addToHistoryHandler}
-                    delay={200}
-                >{context.render()}
-                </DoubleClick>
-            </View>
+            <DoubleClick
+                doubleTap={addToHistoryHandler}
+                delay={200}>
+                <View>
+                    <Text>{props.sheet.number + ' - ' + props.sheet.title}</Text>
+                </View>
+                <View>
+                    {context.render()}
+                </View>
+            </DoubleClick>
         </View>
     );
 }
@@ -98,7 +99,9 @@ const calculateWidths = (measures, availableWidth) => {
 }
 
 
-const styles = StyleSheet.create({
-});
+const styles = StyleSheet.create(
+    {
+        
+    });
 
 export default Score;
