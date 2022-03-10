@@ -5,11 +5,89 @@ import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
 import NotoFontPack from '../vexflow/NotoFontPack';
 import { Barline } from 'vexflow/src/stavebarline';
 import DoubleClick from 'react-native-double-tap';
-import { ListItem, Text } from 'react-native-elements';
+import { Badge, ListItem, Text } from 'react-native-elements';
 
 const pageWidth = 350
 const keyWidth = 70
 const zWidth = 20
+
+const badgeColors = [
+    {
+        key: 0,
+        code: "#FFFFFF",
+        text: "#000000"
+    },
+    {
+        key: 1,
+        code: "#dbdbdb",
+        text: "#000000"
+    },
+    {
+        key: 2,
+        code: "#c6c4c4",
+        text: "#FFFFFF"
+    },
+    {
+        key: 3,
+        code: "#94aedd",
+        text: "#FFFFFF"
+    },
+    {
+        key: 4,
+        code: "#67cdf4",
+        text: "#FFFFFF"
+    },
+    {
+        key: 5,
+        code: "#8ef5ff",
+        text: "#FFFFFF"
+    },
+    {
+        key: 6,
+        code: "#86ed93",
+        text: "#FFFFFF"
+    },
+    {
+        key: 7,
+        code: "#b9ff7a",
+        text: "#FFFFFF"
+    },
+    {
+        key: 8,
+        code: "#ffe622",
+        text: "#FFFFFF"
+    },
+    {
+        key: 9,
+        code: "#ffbe43",
+        text: "#FFFFFF"
+    },
+    {
+        key: 10,
+        code: "#ff800f",
+        text: "#FFFFFF"
+    },
+    {
+        key: 11,
+        code: "#ff5e00",
+        text: "#FFFFFF"
+    },
+    {
+        key: 12,
+        code: "#fe0000",
+        text: "#FFFFFF"
+    },
+    {
+        key: 13,
+        code: "#ba0101",
+        text: "#FFFFFF"
+    },
+    {
+        key: 14,
+        code: "#780000",
+        text: "#FFFFFF"
+    }
+]
 
 const Score = props => {
 
@@ -58,6 +136,13 @@ const Score = props => {
                     </ListItem.Content>
                 </ListItem>
             </DoubleClick>
+            <Badge
+              status="primary"
+              value={props.nbInHistory}
+              containerStyle={{ position: 'absolute', top:15, left: 350 }}
+              badgeStyle={getBadgeStyle(props.nbInHistory)}
+              textStyle={getBadgeTextStyle(props.nbInHistory)}
+            />
         </View>
     );
 }
@@ -100,6 +185,18 @@ const calculateWidths = (measures, availableWidth) => {
     return measures.map((measure) => notewidth * measure.weight)
 }
 
+const getBadgeStyle = (nbInHistory) => {
+    return ({
+        backgroundColor: (badgeColors.length > nbInHistory) ? badgeColors[nbInHistory].code : "black"
+    })
+}
+
+const getBadgeTextStyle = (nbInHistory) => {
+    return ({
+            color: (badgeColors.length > nbInHistory) ? badgeColors[nbInHistory].text : "white"
+        }
+    )
+}
 
 const styles = StyleSheet.create(
     {

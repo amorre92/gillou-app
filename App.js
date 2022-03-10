@@ -56,7 +56,11 @@ export default function App() {
         style={styles.list}
         data={data}
         renderItem={
-          itemData => (<Score sheet={itemData.item.value} onAddToHistory={addToHistoryHandler} />)
+          itemData => (
+            <Score
+              sheet={itemData.item.value}
+              onAddToHistory={addToHistoryHandler}
+              nbInHistory={historyData.filter((history) => history.value.scoreId === itemData.item.key).length} />)
         } />
       <Button
         title='Historique'
