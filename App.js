@@ -63,6 +63,7 @@ export default function App() {
         onPress={() => setIsHistoryMode(true)}
         buttonStyle={{
           borderColor: '#fc861d',
+          marginHorizontal: 10
         }}
         type="outline"
         titleStyle={{ color: '#fc861d' }} />
@@ -72,7 +73,6 @@ export default function App() {
 
 const styles = StyleSheet.create({
   screen: {
-    padding: 10,
     paddingTop: 40,
     paddingBottom: 50
   },

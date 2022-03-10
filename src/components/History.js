@@ -32,7 +32,7 @@ const History = props => {
                                     icon={{
                                         name: 'trash',
                                         type: 'font-awesome',
-                                        size: 20,
+                                        size: 25,
                                         color: 'red'
                                     }}
                                     buttonStyle={{ backgroundColor: 'white' }}

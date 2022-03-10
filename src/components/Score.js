@@ -5,9 +5,9 @@ import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
 import NotoFontPack from '../vexflow/NotoFontPack';
 import { Barline } from 'vexflow/src/stavebarline';
 import DoubleClick from 'react-native-double-tap';
-import { Text } from 'react-native-elements';
+import { ListItem, Text } from 'react-native-elements';
 
-const pageWidth = 370
+const pageWidth = 350
 const keyWidth = 70
 const zWidth = 20
 
@@ -49,12 +49,14 @@ const Score = props => {
             <DoubleClick
                 doubleTap={addToHistoryHandler}
                 delay={200}>
-                <View>
-                    <Text>{props.sheet.number + ' - ' + props.sheet.title}</Text>
-                </View>
-                <View>
-                    {context.render()}
-                </View>
+                <ListItem>
+                    <ListItem.Content>
+                        <ListItem.Title>{props.sheet.number + ' - ' + props.sheet.title}</ListItem.Title>
+                        <View>
+                            {context.render()}
+                        </View>
+                    </ListItem.Content>
+                </ListItem>
             </DoubleClick>
         </View>
     );
@@ -101,7 +103,7 @@ const calculateWidths = (measures, availableWidth) => {
 
 const styles = StyleSheet.create(
     {
-        
+
     });
 
 export default Score;
