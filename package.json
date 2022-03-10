@@ -18,7 +18,8 @@
     "react-native-svg": "12.1.1",
     "react-native-vexflow": "^0.0.1",
     "react-native-web": "0.17.1",
-    "vexflow": "^1.2.93"
+    "vexflow": "^1.2.93",
+    "expo-updates": "~0.11.6"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9"

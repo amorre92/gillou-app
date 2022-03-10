@@ -1,5 +1,4 @@
 import { StyleSheet, View, FlatList } from 'react-native';
-import { clickProps } from 'react-native-web/dist/cjs/modules/forwardedProps';
 import Score from './src/components/Score';
 import AirClassique from './src/scores/AirClassique';
 import Ambulant from './src/scores/Ambulant';
