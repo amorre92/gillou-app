@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, Dimensions } from 'react-native';
 import Vex from 'vexflow';
 import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
 import NotoFontPack from '../vexflow/NotoFontPack';
@@ -7,7 +7,7 @@ import { Barline } from 'vexflow/src/stavebarline';
 import DoubleClick from 'react-native-double-tap';
 import { Badge, ListItem, Text } from 'react-native-elements';
 
-const pageWidth = 350
+const pageWidth = Dimensions.get('window').width - 30
 const keyWidth = 70
 const zWidth = 20
 
@@ -19,77 +19,48 @@ const badgeColors = [
     },
     {
         key: 1,
-        code: "#dbdbdb",
+        code: "#f0f0f0",
         text: "#000000"
     },
     {
         key: 2,
-        code: "#c6c4c4",
-        text: "#FFFFFF"
+        code: "#ffffb2",
+        text: "#000000"
     },
     {
         key: 3,
-        code: "#94aedd",
-        text: "#FFFFFF"
+        code: "#fed976",
+        text: "#000000"
     },
     {
         key: 4,
-        code: "#67cdf4",
-        text: "#FFFFFF"
+        code: "#fc861d",
+        text: "#000000"
     },
     {
         key: 5,
-        code: "#8ef5ff",
+        code: "#fc4e2a",
         text: "#FFFFFF"
     },
     {
         key: 6,
-        code: "#86ed93",
+        code: "#e31a1c",
         text: "#FFFFFF"
     },
     {
         key: 7,
-        code: "#b9ff7a",
+        code: "#b10026",
         text: "#FFFFFF"
     },
     {
         key: 8,
-        code: "#ffe622",
-        text: "#FFFFFF"
-    },
-    {
-        key: 9,
-        code: "#ffbe43",
-        text: "#FFFFFF"
-    },
-    {
-        key: 10,
-        code: "#ff800f",
-        text: "#FFFFFF"
-    },
-    {
-        key: 11,
-        code: "#ff5e00",
-        text: "#FFFFFF"
-    },
-    {
-        key: 12,
-        code: "#fe0000",
-        text: "#FFFFFF"
-    },
-    {
-        key: 13,
-        code: "#ba0101",
-        text: "#FFFFFF"
-    },
-    {
-        key: 14,
         code: "#780000",
         text: "#FFFFFF"
     }
 ]
 
 const Score = props => {
+
 
     const addToHistoryHandler = () => {
         props.onAddToHistory(props.sheet.title, props.sheet.number, props.sheet.id);
@@ -139,7 +110,7 @@ const Score = props => {
             <Badge
               status="primary"
               value={props.nbInHistory}
-              containerStyle={{ position: 'absolute', top:15, left: 350 }}
+              containerStyle={{ position: 'absolute', top:16, left: pageWidth }}
               badgeStyle={getBadgeStyle(props.nbInHistory)}
               textStyle={getBadgeTextStyle(props.nbInHistory)}
             />
