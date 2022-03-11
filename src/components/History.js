@@ -49,7 +49,8 @@ const History = props => {
 }
 const styles = StyleSheet.create({
     historyContainer: {
-        flex: 1
+        flex: 1, 
+        paddingTop: 10
     },
     input: {
         width: '80%',
