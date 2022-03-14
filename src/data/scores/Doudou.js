@@ -6,7 +6,7 @@ const Doudou = () => {
     // measure 1
     // notes
     let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
-    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8r" })
+    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
     let note3_m1 = new Vex.Flow.StaveNote({ keys: ["f/5"], duration: "8" }).setStemDirection(-1)
 
     // measure 2

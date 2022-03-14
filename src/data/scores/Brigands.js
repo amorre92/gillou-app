@@ -4,11 +4,12 @@ const Brigands = () => {
 
     // measure 1
     // notes
-    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
-    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
+    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
+    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
     let note3_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
+    let note4_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
     // beams
-    let beam1_m1 = new Vex.Flow.Beam([note2_m1, note3_m1])
+    let beam1_m1 = new Vex.Flow.Beam([note3_m1, note4_m1])
 
     // measure 2
     // notes
@@ -41,7 +42,7 @@ const Brigands = () => {
             measures: [
                 {
                     index: 0,
-                    notes: [note1_m1, note2_m1, note3_m1],
+                    notes: [note1_m1, note2_m1, note3_m1, note4_m1],
                     weight: 3
                 },
                 {

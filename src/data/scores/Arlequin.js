@@ -5,8 +5,8 @@ const Arlequin = () => {
 
     // measure 1
     // notes
-    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
-    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8r" })
+    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
+    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
     let note3_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
 
     // measure 2

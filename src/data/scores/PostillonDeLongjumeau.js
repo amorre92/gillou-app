@@ -7,7 +7,8 @@ const PostillonDeLongjumeau = () => {
     // measure 1
     // notes
     let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
-    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
+    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
+    let note3_m1 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
 
     // measure 2
     // notes
@@ -27,7 +28,7 @@ const PostillonDeLongjumeau = () => {
     let note1_m3 = new Vex.Flow.StaveNote({ keys: ["f/4"], duration: "4" })
     let note2_m3 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "8" })
     let note3_m3 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" })
-    let note4_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8r" })
+    let note4_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
     
 
 
@@ -38,11 +39,11 @@ const PostillonDeLongjumeau = () => {
             number: 3,
             clef: 'treble',
             keySignature: 'F',
-            timeSignature: '2/4',
+            timeSignature: '6/8',
             measures: [
                 {
                     index: 0,
-                    notes: [note1_m1, note2_m1], 
+                    notes: [note1_m1, note2_m1, note3_m1], 
                     weight: 3
                 },
                 {
