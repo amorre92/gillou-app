@@ -12,7 +12,7 @@ const Cavalcade = () => {
 
     // measure 2
     // notes
-    let note1_m2 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "8" }).addDotToAll()
+    let note1_m2 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "8" })
     let note2_m2 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "16" })
     let note3_m2 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "16" })
     let note4_m2 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "8" })
