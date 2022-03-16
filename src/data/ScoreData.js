@@ -23,6 +23,7 @@ import Serenade from "./scores/Serenade";
 import TrompetteDesCentGardes from "./scores/TrompetteDesCentGardes";
 import ViventLesBleus from "./scores/ViventLesBleus";
 import VosArezInAubade from "./scores/VosArezInAubade";
+import MitantDesCamps from "./scores/MitantDesCamps";
 
 const ScoreData = (tone) => {
   const airClassique = AirClassique(tone);
@@ -50,6 +51,7 @@ const ScoreData = (tone) => {
   const marins = Marins(tone);
   const brigands = Brigands(tone);
   const polkaMarche = PolkaMarche(tone);
+  const mitantDesCamps = MitantDesCamps(tone);
 
   return [
     { key: airClassique.id, value: airClassique },
@@ -77,6 +79,7 @@ const ScoreData = (tone) => {
     { key: marins.id, value: marins },
     { key: brigands.id, value: brigands },
     { key: polkaMarche.id, value: polkaMarche },
+    { key: mitantDesCamps.id, value: mitantDesCamps },
   ];
 };
 export default ScoreData;
