@@ -23,6 +23,7 @@ import Serenade from './scores/Serenade';
 import TrompetteDesCentGardes from './scores/TrompetteDesCentGardes';
 import ViventLesBleus from './scores/ViventLesBleus';
 import VosArezInAubade from './scores/VosArezInAubade';
+import MitantCamps from "./scores/MitantCamps";
 
 const airClassique = AirClassique();
 const lionDeBelgique = LionDeBelgique();
@@ -49,6 +50,7 @@ const trompetteDesCentGardes = TrompetteDesCentGardes();
 const marins = Marins();
 const brigands = Brigands();
 const polkaMarche = PolkaMarche();
+const mitantCamps = MitantCamps();
 
 const ScoreData = () => {
   return (
@@ -77,7 +79,8 @@ const ScoreData = () => {
       { key: trompetteDesCentGardes.id, value: trompetteDesCentGardes },
       { key: marins.id, value: marins },
       { key: brigands.id, value: brigands },
-      { key: polkaMarche.id, value: polkaMarche }
+      { key: polkaMarche.id, value: polkaMarche },
+      { key: mitantCamps.id, value: mitantCamps }
     ]
   )
 }
