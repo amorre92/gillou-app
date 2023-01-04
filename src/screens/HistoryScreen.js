@@ -2,25 +2,20 @@ import React, { useState } from 'react'
 import { View, StyleSheet, Modal, FlatList, Text } from 'react-native'
 import { Button, ListItem } from 'react-native-elements';
 
-const History = props => {
-
-    const closeHandler = () => {
-        props.onCloseHistory();
-    }
+function HistoryScreen({onRemoveFromHistory, onDeleteAll, data}) {
 
     const removeFromHistoryHandler = (historyId) => {
-        props.onRemoveFromHistory(historyId);
+        onRemoveFromHistory(historyId);
     }
 
     const deleteAllHandler = () => {
-        props.onDeleteAll();
+        onDeleteAll();
     }
 
     return (
-        <Modal visible={props.visible} animationType="slide">
-            <View style={styles.historyContainer}>
+        <View style={styles.historyContainer}>
                 <FlatList
-                    data={props.data}
+                    data={data}
                     renderItem={
                         itemData => (
                             <ListItem bottomDivider>
@@ -39,14 +34,13 @@ const History = props => {
                                     onPress={() => removeFromHistoryHandler(itemData.item.key)} />
                             </ListItem>)
                     } />
+                    <Button title='Supprimer session' onPress={deleteAllHandler} buttonStyle={{ backgroundColor: 'red' }} />
             </View>
-            <View style={styles.button}>
-                <Button title='Fermer' onPress={closeHandler} buttonStyle={{ backgroundColor: '#fc861d', width: 200 }} />
-                <Button title='Supprimer session' onPress={deleteAllHandler} buttonStyle={{ backgroundColor: 'red' }} />
-            </View>
-        </Modal>
     );
 }
+
+export default HistoryScreen
+
 const styles = StyleSheet.create({
     historyContainer: {
         flex: 1, 
@@ -67,4 +61,3 @@ const styles = StyleSheet.create({
         padding: 10
     }
 });
-export default History
