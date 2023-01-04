@@ -35,6 +35,15 @@ export default function App() {
     });
   };
 
+  const removeLastScoreIdFromHistoryHandler = (scoreId) => {
+    if (historyData) {
+      let items = historyData.filter((history) => history.value.scoreId === scoreId)
+      if (items && items.length > 0) {
+        return removeFromHistoryHandler(items[0].key)
+      }
+    }
+  }
+
   const deleteAllFromHistoryHandler = () => {
     setHistoryData([]);
   };
@@ -66,7 +75,7 @@ export default function App() {
           <Tab.Screen
             name="Annonces"
             children={() => (
-              <ScoreListScreen onAddToHistory={addToHistoryHandler} historyData={historyData} />
+              <ScoreListScreen onAddToHistory={addToHistoryHandler} historyData={historyData} onRemoveOneFromHistory={removeLastScoreIdFromHistoryHandler}/>
             )}
           />
           <Tab.Screen

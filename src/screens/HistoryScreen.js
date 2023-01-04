@@ -27,7 +27,7 @@ function HistoryScreen({onRemoveFromHistory, onDeleteAll, data}) {
                                     icon={{
                                         name: 'trash',
                                         type: 'font-awesome',
-                                        size: 25,
+                                        size: 20,
                                         color: 'red'
                                     }}
                                     buttonStyle={{ backgroundColor: 'white' }}
@@ -44,7 +44,8 @@ export default HistoryScreen
 const styles = StyleSheet.create({
     historyContainer: {
         flex: 1, 
-        paddingTop: 10
+        paddingTop: 10,
+        backgroundColor: 'white'
     },
     input: {
         width: '80%',

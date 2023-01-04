@@ -4,12 +4,13 @@ import ScoreData from "../data/ScoreData";
 
 const data = ScoreData();
 
-function ScoreListScreen({onAddToHistory, historyData}) {
+function ScoreListScreen({onAddToHistory, historyData, onRemoveOneFromHistory}) {
   function renderScoreItem(itemData) {
     return (
       <Score
         sheet={itemData.item.value}
         onAddToHistory={onAddToHistory}
+        onRemoveOneFromHistory={onRemoveOneFromHistory}
         nbInHistory={
           historyData.filter(
             (history) => history.value.scoreId === itemData.item.key
