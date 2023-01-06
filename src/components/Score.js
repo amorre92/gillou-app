@@ -5,59 +5,11 @@ import ReactNativeSVGContext from "../vexflow/ReactNativeSVGContext";
 import NotoFontPack from "../vexflow/NotoFontPack";
 import { Barline } from "vexflow/src/stavebarline";
 import DoubleClick from "react-native-double-tap";
-import { Badge, Button, ListItem } from "react-native-elements";
+import ScoreTitle from "./ScoreTitle";
 
 const pageWidth = Dimensions.get("window").width - 30;
 const keyWidth = 70;
 const zWidth = 20;
-
-const badgeColors = [
-  {
-    key: 0,
-    code: "#FFFFFF",
-    text: "#000000",
-  },
-  {
-    key: 1,
-    code: "#f0f0f0",
-    text: "#000000",
-  },
-  {
-    key: 2,
-    code: "#ffffb2",
-    text: "#000000",
-  },
-  {
-    key: 3,
-    code: "#fed976",
-    text: "#000000",
-  },
-  {
-    key: 4,
-    code: "#fc861d",
-    text: "#000000",
-  },
-  {
-    key: 5,
-    code: "#fc4e2a",
-    text: "#FFFFFF",
-  },
-  {
-    key: 6,
-    code: "#e31a1c",
-    text: "#FFFFFF",
-  },
-  {
-    key: 7,
-    code: "#b10026",
-    text: "#FFFFFF",
-  },
-  {
-    key: 8,
-    code: "#780000",
-    text: "#FFFFFF",
-  },
-];
 
 const Score = (props) => {
   const addToHistoryHandler = () => {
@@ -108,48 +60,17 @@ const Score = (props) => {
   renderBeams(props.sheet.beams, context);
   // Render ties
   renderTies(props.sheet.ties, context);
-
   return (
     <View>
       <DoubleClick doubleTap={addToHistoryHandler} delay={200}>
-        <ListItem>
-          <ListItem.Content>
-            <ListItem.Title>
-              {props.sheet.number + " - " + props.sheet.title}
-            </ListItem.Title>
-            <View>{context.render()}</View>
-          </ListItem.Content>
-        </ListItem>
+        <ScoreTitle
+          title={props.sheet.number + " - " + props.sheet.title}
+          nbInHistory={props.nbInHistory}
+          onAddOneToHistory={addToHistoryHandler}
+          onRemoveOneOfHistory={removeOneFromHistoryHandler}
+        />
+        <View style={styles.scoreContainer}>{context.render()}</View>
       </DoubleClick>
-      <Button
-        icon={{
-          name: "minus",
-          type: "font-awesome",
-          size: 15,
-          color: "#FC861D",
-        }}
-        containerStyle={{ position: "absolute", top: 10, left: pageWidth - 70 }}
-        buttonStyle={{ backgroundColor: "white" }}
-        onPress={removeOneFromHistoryHandler}
-      />
-      <Badge
-        status="primary"
-        value={props.nbInHistory}
-        containerStyle={{ position: "absolute", top: 16, left: pageWidth - 30 }}
-        badgeStyle={getBadgeStyle(props.nbInHistory)}
-        textStyle={getBadgeTextStyle(props.nbInHistory)}
-      />
-      <Button
-        icon={{
-          name: "plus",
-          type: "font-awesome",
-          size: 15,
-          color: "#FC861D",
-        }}
-        containerStyle={{ position: "absolute", top: 10, left: pageWidth - 10 }}
-        buttonStyle={{ backgroundColor: "white" }}
-        onPress={addToHistoryHandler}
-      />
     </View>
   );
 };
@@ -202,24 +123,12 @@ const calculateWidths = (measures, availableWidth) => {
   return measures.map((measure) => notewidth * measure.weight);
 };
 
-const getBadgeStyle = (nbInHistory) => {
-  return {
-    backgroundColor:
-      badgeColors.length > nbInHistory
-        ? badgeColors[nbInHistory].code
-        : "black",
-  };
-};
-
-const getBadgeTextStyle = (nbInHistory) => {
-  return {
-    color:
-      badgeColors.length > nbInHistory
-        ? badgeColors[nbInHistory].text
-        : "white",
-  };
-};
-
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  scoreContainer: {
+    backgroundColor: "white",
+    width: "100%",
+    alignItems: "center",
+  },
+});
 
 export default Score;

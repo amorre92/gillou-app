@@ -6,7 +6,6 @@ import HistoryScreen from "./src/screens/HistoryScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
-import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function App() {
   const [historyData, setHistoryData] = useState([]);
@@ -55,7 +54,12 @@ export default function App() {
   return (
     <>
       <NavigationContainer>
-        <Stack.Navigator>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#ebe8e4" },
+            headerTintColor: "black"
+          }}
+          >
           <Stack.Screen
             name="Annonces"
             children={({navigation}) => (

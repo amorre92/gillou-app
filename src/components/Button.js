@@ -1,7 +1,10 @@
 import { Pressable, StyleSheet } from "react-native";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 
-function Button({ name, onPress }) {
+function Button({ name, onPress, size }) {
+
+  const sizeConst = size ? size : 24
+
   return (
     <Pressable
       onPress={onPress}
@@ -11,7 +14,7 @@ function Button({ name, onPress }) {
         pressed ? styles.buttonPressed : null,
       ]}
     >
-      <Icon name={name} size={24} color="#fc861d" />
+      <Icon name={name} size={sizeConst} color="#fc861d" />
     </Pressable>
   );
 }
