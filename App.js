@@ -5,7 +5,7 @@ import ScoreListScreen from "./src/screens/ScoreListScreen";
 import HistoryScreen from "./src/screens/HistoryScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Icon from 'react-native-vector-icons/FontAwesome5';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function App() {
   const [historyData, setHistoryData] = useState([]);
@@ -59,7 +59,7 @@ export default function App() {
             let iconName;
 
             if (route.name === 'Annonces') {
-              iconName = 'music'
+              iconName = 'playlist-music'
             } else if (route.name === 'Historique') {
               iconName = 'history'
             }
@@ -68,8 +68,9 @@ export default function App() {
           
             return <Icon name={iconName} size={size} color={color} />;
           },
-          tabBarActiveTintColor: '#FC861D',
+          tabBarActiveTintColor: '#fc861d',
           tabBarInactiveTintColor: 'gray',
+          tabBarShowLabel: false
         })}
         >
           <Tab.Screen
@@ -80,11 +81,12 @@ export default function App() {
           />
           <Tab.Screen
             name="Historique"
-            children={() => (
+            children={({navigation}) => (
               <HistoryScreen
                 onRemoveFromHistory={removeFromHistoryHandler}
                 onDeleteAll={deleteAllFromHistoryHandler}
                 data={historyData}
+                navigation={navigation}
               />
             )}
           />
