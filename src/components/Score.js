@@ -5,7 +5,7 @@ import ReactNativeSVGContext from "../vexflow/ReactNativeSVGContext";
 import NotoFontPack from "../vexflow/NotoFontPack";
 import { Barline } from "vexflow/src/stavebarline";
 import DoubleClick from "react-native-double-tap";
-import { Badge, Button, ListItem, Text } from "react-native-elements";
+import { Badge, Button, ListItem } from "react-native-elements";
 
 const pageWidth = Dimensions.get("window").width - 30;
 const keyWidth = 70;

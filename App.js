@@ -5,6 +5,7 @@ import ScoreListScreen from "./src/screens/ScoreListScreen";
 import HistoryScreen from "./src/screens/HistoryScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default function App() {
@@ -49,37 +50,19 @@ export default function App() {
   };
 
   const Tab = createBottomTabNavigator();
+  const Stack = createNativeStackNavigator();
 
   return (
     <>
       <NavigationContainer>
-        <Tab.Navigator
-        screenOptions={({ route }) => ({
-          tabBarIcon: ({ focused, color, size }) => {
-            let iconName;
-
-            if (route.name === 'Annonces') {
-              iconName = 'playlist-music'
-            } else if (route.name === 'Historique') {
-              iconName = 'history'
-            }
-
-            // You can return any component that you like here!
-          
-            return <Icon name={iconName} size={size} color={color} />;
-          },
-          tabBarActiveTintColor: '#fc861d',
-          tabBarInactiveTintColor: 'gray',
-          tabBarShowLabel: false
-        })}
-        >
-          <Tab.Screen
+        <Stack.Navigator>
+          <Stack.Screen
             name="Annonces"
-            children={() => (
-              <ScoreListScreen onAddToHistory={addToHistoryHandler} historyData={historyData} onRemoveOneFromHistory={removeLastScoreIdFromHistoryHandler}/>
+            children={({navigation}) => (
+              <ScoreListScreen onAddToHistory={addToHistoryHandler} historyData={historyData} onRemoveOneFromHistory={removeLastScoreIdFromHistoryHandler} navigation={navigation}/>
             )}
           />
-          <Tab.Screen
+          <Stack.Screen
             name="Historique"
             children={({navigation}) => (
               <HistoryScreen
@@ -90,7 +73,7 @@ export default function App() {
               />
             )}
           />
-        </Tab.Navigator>
+        </Stack.Navigator>
       </NavigationContainer>
     </>
   );

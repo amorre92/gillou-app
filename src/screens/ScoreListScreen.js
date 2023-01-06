@@ -1,10 +1,31 @@
 import { FlatList, StyleSheet } from "react-native";
 import Score from "../components/Score";
 import ScoreData from "../data/ScoreData";
+import { useLayoutEffect } from "react";
+import Button from "../components/Button";
 
 const data = ScoreData();
 
-function ScoreListScreen({onAddToHistory, historyData, onRemoveOneFromHistory}) {
+function ScoreListScreen({
+  onAddToHistory,
+  historyData,
+  onRemoveOneFromHistory,
+  navigation,
+}) {
+  function pressHandler() {
+    navigation.navigate("Historique");
+  }
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => {
+        return (
+          <Button onPress={pressHandler} name="history"/>
+        );
+      },
+    });
+  }, [navigation, pressHandler]);
+
   function renderScoreItem(itemData) {
     return (
       <Score
@@ -29,6 +50,6 @@ export default ScoreListScreen;
 
 const styles = StyleSheet.create({
   list: {
-    flex: 1
-  },
+    flex: 1,
+  }
 });
