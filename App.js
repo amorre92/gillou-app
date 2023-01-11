@@ -6,6 +6,7 @@ import HistoryScreen from "./src/screens/HistoryScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
   const [historyData, setHistoryData] = useState([]);
@@ -53,6 +54,7 @@ export default function App() {
 
   return (
     <>
+    <StatusBar backgroundColor="#ebe8e4" style="dark"/> 
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={{

@@ -1,5 +1,4 @@
 import Vex from 'vexflow';
-import { Articulation } from 'vexflow/src/articulation';
 
 const Doudou = () => {
 
