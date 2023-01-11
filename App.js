@@ -1,87 +1,92 @@
-import React, { useState } from 'react';
-import { StyleSheet, View, FlatList } from 'react-native';
-import History from './src/components/History';
-import Score from './src/components/Score';
-import ScoreData from './src/data/ScoreData';
+import React, { useState } from "react";
+import { StyleSheet } from "react-native";
 import moment from "moment";
-import { Button } from 'react-native-elements';
+import ScoreListScreen from "./src/screens/ScoreListScreen";
+import HistoryScreen from "./src/screens/HistoryScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createNativeStackNavigator } from "@react-navigation/native-stack"
+import { StatusBar } from "expo-status-bar";
 
 export default function App() {
-
-  const [isHistoryMode, setIsHistoryMode] = useState(false);
-  const [historyData, setHistoryData] = useState([])
-
-  const data = ScoreData();
-
-  const closeHistoryHandler = () => {
-    setIsHistoryMode(false);
-  }
+  const [historyData, setHistoryData] = useState([]);
 
   const addToHistoryHandler = (scoreTitle, scoreNumber, scoreId) => {
-    let currentDateTime = new Date()
-    let currentDate = moment(currentDateTime).format("DD-MM-YYYY")
-    let currentTime = moment(currentDateTime).format("HH:mm:ss")
+    let currentDateTime = new Date();
+    let currentDate = moment(currentDateTime).format("DD-MM-YYYY");
+    let currentTime = moment(currentDateTime).format("HH:mm:ss");
 
-    let historyItem = (
-      {
-        scoreTitle: scoreTitle,
-        scoreNumber: scoreNumber,
-        scoreId: scoreId,
-        date: currentDate,
-        time: currentTime
-      }
-    )
+    let historyItem = {
+      scoreTitle: scoreTitle,
+      scoreNumber: scoreNumber,
+      scoreId: scoreId,
+      date: currentDate,
+      time: currentTime,
+    };
 
-    setHistoryData(currentHistoryData => [
+    setHistoryData((currentHistoryData) => [
       { key: Math.random().toString(), value: historyItem },
-      ...currentHistoryData
+      ...currentHistoryData,
     ]);
-
-  }
+  };
 
   const removeFromHistoryHandler = (historyId) => {
-    setHistoryData(currentHistory => {
-      return currentHistory.filter((history) => history.key !== historyId)
-    })
+    setHistoryData((currentHistory) => {
+      return currentHistory.filter((history) => history.key !== historyId);
+    });
+  };
+
+  const removeLastScoreIdFromHistoryHandler = (scoreId) => {
+    if (historyData) {
+      let items = historyData.filter((history) => history.value.scoreId === scoreId)
+      if (items && items.length > 0) {
+        return removeFromHistoryHandler(items[0].key)
+      }
+    }
   }
 
   const deleteAllFromHistoryHandler = () => {
-    setHistoryData([])
-  }
+    setHistoryData([]);
+  };
+
+  const Tab = createBottomTabNavigator();
+  const Stack = createNativeStackNavigator();
 
   return (
-    <View style={styles.screen}>
-      <History visible={isHistoryMode} onCloseHistory={closeHistoryHandler} onRemoveFromHistory={removeFromHistoryHandler} onDeleteAll={deleteAllFromHistoryHandler} data={historyData} />
-      <FlatList
-        style={styles.list}
-        data={data}
-        renderItem={
-          itemData => (
-            <Score
-              sheet={itemData.item.value}
-              onAddToHistory={addToHistoryHandler}
-              nbInHistory={historyData.filter((history) => history.value.scoreId === itemData.item.key).length} />)
-        } />
-      <Button
-        title='Historique'
-        onPress={() => setIsHistoryMode(true)}
-        buttonStyle={{
-          borderColor: '#fc861d',
-          marginHorizontal: 10
-        }}
-        type="outline"
-        titleStyle={{ color: '#fc861d' }} />
-    </View>
+    <>
+    <StatusBar backgroundColor="#ebe8e4" style="dark"/> 
+      <NavigationContainer>
+        <Stack.Navigator
+          screenOptions={{
+            headerStyle: { backgroundColor: "#ebe8e4" },
+            headerTintColor: "black"
+          }}
+          >
+          <Stack.Screen
+            name="Annonces"
+            children={({navigation}) => (
+              <ScoreListScreen onAddToHistory={addToHistoryHandler} historyData={historyData} onRemoveOneFromHistory={removeLastScoreIdFromHistoryHandler} navigation={navigation}/>
+            )}
+          />
+          <Stack.Screen
+            name="Historique"
+            children={({navigation}) => (
+              <HistoryScreen
+                onRemoveFromHistory={removeFromHistoryHandler}
+                onDeleteAll={deleteAllFromHistoryHandler}
+                data={historyData}
+                navigation={navigation}
+              />
+            )}
+          />
+        </Stack.Navigator>
+      </NavigationContainer>
+    </>
   );
 }
-
 const styles = StyleSheet.create({
   screen: {
     paddingTop: 15,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
-  list: {
-    marginTop: 10,
-    marginBottom: 10
-  }
 });
