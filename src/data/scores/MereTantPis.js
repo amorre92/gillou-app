@@ -25,7 +25,7 @@ const MereTantPis = () => {
 
     // measure 3
     // notes
-    let note1_m3 = new Vex.Flow.StaveNote({ keys: ["d/5"], duration: "8" }).setStemDirection(-1)
+    let note1_m3 = new Vex.Flow.StaveNote({ keys: ["c/5"], duration: "8" }).setStemDirection(-1)
     let note2_m3 = new Vex.Flow.StaveNote({ keys: ["f/5"], duration: "8" }).setStemDirection(-1)
     let note3_m3 = new Vex.Flow.StaveNote({ keys: ["f/5"], duration: "8" }).setStemDirection(-1)
     let note4_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8r" })
@@ -49,7 +49,7 @@ const MereTantPis = () => {
                 {
                     index: 1,
                     notes: [note1_m2, note2_m2, note3_m2, note4_m2, note5_m2, note6_m2],
-                    weight: 6
+                    weight: 5
                 },
                 {
                     index: 2,

@@ -4,9 +4,9 @@ const QuandMgrandMere = () => {
 
     // measure 1
     // notes
-    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" }).addDotToAll()
-    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "16" })
-    let note3_m1 = new Vex.Flow.StaveNote({ keys: ["g/4"], duration: "16" })
+    let note1_m1 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "qr" })
+    let note2_m1 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "8" })
+    let note3_m1 = new Vex.Flow.StaveNote({ keys: ["g/4"], duration: "8" })
     // beams
     let beam1_m1 = new Vex.Flow.Beam([note2_m1, note3_m1])
     // ties

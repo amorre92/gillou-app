@@ -29,7 +29,8 @@ const Chasseurs = () => {
     let note2_m3 = new Vex.Flow.StaveNote({ keys: ["f/4"], duration: "16" })
     let note3_m3 = new Vex.Flow.StaveNote({ keys: ["g/4"], duration: "16" })
     let note4_m3 = new Vex.Flow.StaveNote({ keys: ["a/4"], duration: "16" })
-    let note5_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "16" }).setStemDirection(-1)
+    let note5_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8" }).setStemDirection(-1)
+    let note6_m3 = new Vex.Flow.StaveNote({ keys: ["b/4"], duration: "8r" })
     // beams
     let beam1_m3 = new Vex.Flow.Beam([note1_m3, note2_m3, note3_m3, note4_m3])
     // ties
@@ -59,8 +60,8 @@ const Chasseurs = () => {
                 },
                 {
                     index: 2,
-                    notes: [note1_m3, note2_m3, note3_m3, note4_m3, note5_m3],
-                    weight: 5
+                    notes: [note1_m3, note2_m3, note3_m3, note4_m3, note5_m3, note6_m3],
+                    weight: 6
                 }
             ],
             beams: [beam1_m2, beam2_m2, beam1_m3],
