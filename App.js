@@ -5,6 +5,9 @@ import Score from './src/components/Score';
 import ScoreData from './src/data/ScoreData';
 import moment from "moment";
 import { Button } from 'react-native-elements';
+import {openDatabase} from 'react-native-sqlite-storage';
+
+
 
 export default function App() {
 
@@ -12,6 +15,10 @@ export default function App() {
   const [historyData, setHistoryData] = useState([])
 
   const data = ScoreData();
+
+  
+
+  
 
   const closeHistoryHandler = () => {
     setIsHistoryMode(false);

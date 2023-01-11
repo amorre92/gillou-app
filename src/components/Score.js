@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import Vex from 'vexflow';
 import ReactNativeSVGContext from '../vexflow/ReactNativeSVGContext';
@@ -6,10 +6,15 @@ import NotoFontPack from '../vexflow/NotoFontPack';
 import { Barline } from 'vexflow/src/stavebarline';
 import DoubleClick from 'react-native-double-tap';
 import { Badge, ListItem, Text } from 'react-native-elements';
+import Dialog, { DialogFooter, DialogButton, DialogContent } from 'react-native-popup-dialog';
+import { Button } from 'react-native'
 
 const pageWidth = Dimensions.get('window').width - 30
 const keyWidth = 70
 const zWidth = 20
+//let state = false;
+
+
 
 const badgeColors = [
     {
@@ -61,9 +66,19 @@ const badgeColors = [
 
 const Score = props => {
 
+    const [
+        defaultAnimationDialog, setDefaultAnimationDialog
+      ] = useState(false);
+      
+    
+
 
     const addToHistoryHandler = () => {
         props.onAddToHistory(props.sheet.title, props.sheet.number, props.sheet.id);
+        if(props.sheet.number == 19)
+        {
+            setDefaultAnimationDialog(true);
+        }
     }
 
     // create context
@@ -75,6 +90,7 @@ const Score = props => {
     renderStave0(keyWidth, props.sheet.clef, props.sheet.keySignature, props.sheet.timeSignature, context)
 
     let currentX = keyWidth
+    
 
     props.sheet.measures.forEach((measure) => {
         renderStave(currentX,
@@ -114,6 +130,17 @@ const Score = props => {
               badgeStyle={getBadgeStyle(props.nbInHistory)}
               textStyle={getBadgeTextStyle(props.nbInHistory)}
             />
+            <Dialog visible={defaultAnimationDialog}
+                onTouchOutside={() => {
+                    setDefaultAnimationDialog(false);
+                  }}
+                  
+                >
+                <DialogContent> 
+                    <Text>Claudy arrête de déconner !</Text>
+                </DialogContent>        
+                    
+            </Dialog>
         </View>
     );
 }

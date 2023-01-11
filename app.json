@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.am.gillou",
-      "buildNumber": "1.2.3",
+      "buildNumber": "1.2.4",
       "icon": "./assets/icon-ios.png"
     },
     "android": {
