@@ -6,12 +6,7 @@ import Button from "../components/Button";
 
 const data = ScoreData();
 
-function ScoreListScreen({
-  onAddToHistory,
-  historyData,
-  onRemoveOneFromHistory,
-  navigation,
-}) {
+function ScoreListScreen({ navigation }) {
   function pressHandler() {
     navigation.navigate("Historique");
   }
@@ -19,26 +14,13 @@ function ScoreListScreen({
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return (
-          <Button onPress={pressHandler} name="history"/>
-        );
+        return <Button onPress={pressHandler} name="history" />;
       },
     });
   }, [navigation, pressHandler]);
 
   function renderScoreItem(itemData) {
-    return (
-      <Score
-        sheet={itemData.item.value}
-        onAddToHistory={onAddToHistory}
-        onRemoveOneFromHistory={onRemoveOneFromHistory}
-        nbInHistory={
-          historyData.filter(
-            (history) => history.value.scoreId === itemData.item.key
-          ).length
-        }
-      />
-    );
+    return <Score sheet={itemData.item.value} />;
   }
 
   return (
@@ -51,5 +33,5 @@ export default ScoreListScreen;
 const styles = StyleSheet.create({
   list: {
     flex: 1,
-  }
+  },
 });
