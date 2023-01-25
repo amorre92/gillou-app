@@ -6,19 +6,29 @@ import NotoFontPack from "../vexflow/NotoFontPack";
 import { Barline } from "vexflow/src/stavebarline";
 import DoubleClick from "react-native-double-tap";
 import ScoreTitle from "./ScoreTitle";
+import { useDispatch } from "react-redux";
+import { addToHistory, removeLastScoreFromHistory } from "../store/history";
 
 const pageWidth = Dimensions.get("window").width - 30;
 const keyWidth = 70;
 const zWidth = 20;
 
 const Score = (props) => {
+  const dispatch = useDispatch();
+
   const addToHistoryHandler = () => {
-    props.onAddToHistory(props.sheet.title, props.sheet.number, props.sheet.id);
+    dispatch(
+      addToHistory({
+        scoreTitle: props.sheet.title,
+        scoreNumber: props.sheet.number,
+        scoreId: props.sheet.id,
+      })
+    );
   };
 
   const removeOneFromHistoryHandler = () => {
-    props.onRemoveOneFromHistory(props.sheet.id);
-  };
+    dispatch(removeLastScoreFromHistory({scoreId: props.sheet.scoreId}))
+  }
 
   // create context
   const context = new ReactNativeSVGContext(NotoFontPack, {
@@ -65,9 +75,8 @@ const Score = (props) => {
       <DoubleClick doubleTap={addToHistoryHandler} delay={200}>
         <ScoreTitle
           title={props.sheet.number + " - " + props.sheet.title}
-          nbInHistory={props.nbInHistory}
           onAddOneToHistory={addToHistoryHandler}
-          onRemoveOneOfHistory={removeOneFromHistoryHandler}
+          onRemoveOneOfHistory={removeLastScoreFromHistory}
         />
         <View style={styles.scoreContainer}>{context.render()}</View>
       </DoubleClick>

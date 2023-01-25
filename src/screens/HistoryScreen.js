@@ -4,10 +4,15 @@ import { ListItem } from "react-native-elements";
 import { useLayoutEffect } from "react";
 
 import Button from "../components/Button";
+import { useDispatch, useSelector } from "react-redux";
+import { removeAllFromHistory, removeFromHistory } from "../store/history";
 
-function HistoryScreen({ onRemoveFromHistory, onDeleteAll, data, navigation }) {
+function HistoryScreen({ navigation }) {
+  const history = useSelector((state) => state.history);
+  const dispatch = useDispatch();
+
   const deleteAllHandler = () => {
-    onDeleteAll();
+    dispatch(removeAllFromHistory())
   };
 
   useLayoutEffect(() => {
@@ -19,13 +24,13 @@ function HistoryScreen({ onRemoveFromHistory, onDeleteAll, data, navigation }) {
   }, [navigation, deleteAllHandler]);
 
   const removeFromHistoryHandler = (historyId) => {
-    onRemoveFromHistory(historyId);
+    dispatch(removeFromHistory(historyId))
   };
 
   return (
     <View style={styles.historyContainer}>
       <FlatList
-        data={data}
+        data={history}
         renderItem={(itemData) => (
           <ListItem bottomDivider>
             <ListItem.Content>

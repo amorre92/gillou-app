@@ -2,7 +2,7 @@
   "expo": {
     "name": "Gillou",
     "slug": "gillou-app",
-    "version": "1.3.1",
+    "version": "1.3.2",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -19,7 +19,7 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.am.gillou",
-      "buildNumber": "1.3.1",
+      "buildNumber": "1.3.2",
       "icon": "./assets/icon-ios.png"
     },
     "android": {
@@ -28,7 +28,7 @@
         "backgroundColor": "#000000"
       },
       "package": "com.am.gillou",
-      "versionCode": 8,
+      "versionCode": 9,
       "permissions": []
     },
     "web": {
