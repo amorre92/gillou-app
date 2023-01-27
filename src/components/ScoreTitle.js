@@ -55,10 +55,11 @@ function ScoreTitle({
   title,
   onRemoveOneOfHistory,
   onAddOneToHistory,
-  scoreId
+  scoreId,
 }) {
-  const history = useSelector((state) => state.history)
-  let nbInHistory = history.filter(h => h.value.scoreId === scoreId).length || 0
+  const history = useSelector((state) => state.history);
+  let nbInHistory =
+    history.filter((h) => h.value.scoreId === scoreId).length || 0;
 
   const getBadgeStyle = (nbInHistory) => {
     return {
@@ -110,6 +111,6 @@ const styles = StyleSheet.create({
   },
   badgeContainer: {
     flexDirection: "row",
-    alignSelf: "flex-end"
+    alignSelf: "flex-end",
   },
 });

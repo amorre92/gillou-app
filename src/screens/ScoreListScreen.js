@@ -20,7 +20,7 @@ function ScoreListScreen({ navigation }) {
   }, [navigation, pressHandler]);
 
   function renderScoreItem(itemData) {
-    return <Score sheet={itemData.item.value} id={itemData.item.key}/>;
+    return <Score sheet={itemData.item.value} id={itemData.item.key} />;
   }
 
   return (

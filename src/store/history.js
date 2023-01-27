@@ -21,9 +21,7 @@ const historySlice = createSlice({
     },
     removeFromHistory: (state, action) => {
       state.splice(
-        state.findIndex(
-          (history) => history.key === action.payload.historyId
-        ),
+        state.findIndex((history) => history.key === action.payload.historyId),
         1
       );
     },
@@ -36,14 +34,15 @@ const historySlice = createSlice({
       );
     },
     removeAllFromHistory: (state) => {
-      state.splice(0,state.length)
+      state.splice(0, state.length);
     },
   },
 });
 
 export const addToHistory = historySlice.actions.addToHistory;
 export const removeFromHistory = historySlice.actions.removeFromHistory;
-export const removeLastScoreFromHistory = historySlice.actions.removeLastScoreFromHistory;
+export const removeLastScoreFromHistory =
+  historySlice.actions.removeLastScoreFromHistory;
 export const removeAllFromHistory = historySlice.actions.removeAllFromHistory;
 
 export default historySlice.reducer;

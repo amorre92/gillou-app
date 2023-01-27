@@ -27,8 +27,8 @@ const Score = (props) => {
   };
 
   const removeOneFromHistoryHandler = () => {
-    dispatch(removeLastScoreFromHistory({scoreId: props.sheet.scoreId}))
-  }
+    dispatch(removeLastScoreFromHistory({ scoreId: props.sheet.scoreId }));
+  };
 
   // create context
   const context = new ReactNativeSVGContext(NotoFontPack, {

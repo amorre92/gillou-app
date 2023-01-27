@@ -12,7 +12,7 @@ function HistoryScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const deleteAllHandler = () => {
-    dispatch(removeAllFromHistory())
+    dispatch(removeAllFromHistory());
   };
 
   useLayoutEffect(() => {
@@ -24,7 +24,7 @@ function HistoryScreen({ navigation }) {
   }, [navigation, deleteAllHandler]);
 
   const removeFromHistoryHandler = (historyId) => {
-    dispatch(removeFromHistory(historyId))
+    dispatch(removeFromHistory(historyId));
   };
 
   return (
