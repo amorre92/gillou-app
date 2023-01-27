@@ -1,10 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
+import moment from "moment/moment";
 
 const historySlice = createSlice({
   name: "history",
-  initialState: {
-    history: [],
-  },
+  initialState: [],
   reducers: {
     addToHistory: (state, action) => {
       let currentDateTime = new Date();
@@ -18,33 +17,33 @@ const historySlice = createSlice({
         date: currentDate,
         time: currentTime,
       };
-      state.history.push({ key: Math.random().toString(), value: historyItem });
+      state.push({ key: Math.random().toString(), value: historyItem });
     },
     removeFromHistory: (state, action) => {
-      state.history.splice(
-        state.history.findIndex(
+      state.splice(
+        state.findIndex(
           (history) => history.key === action.payload.historyId
         ),
         1
       );
     },
     removeLastScoreFromHistory: (state, action) => {
-      state.history.splice(
-        state.history.findIndex(
+      state.splice(
+        state.findIndex(
           (history) => history.value.scoreId === action.payload.scoreId
         ),
         1
       );
     },
     removeAllFromHistory: (state) => {
-      state.history = [];
+      state.splice(0,state.length)
     },
   },
 });
 
-export const addToHistory = addToHistory;
-export const removeFromHistory = removeFromHistory;
-export const removeLastScoreFromHistory = removeLastScoreFromHistory;
-export const removeAllFromHistory = removeAllFromHistory;
+export const addToHistory = historySlice.actions.addToHistory;
+export const removeFromHistory = historySlice.actions.removeFromHistory;
+export const removeLastScoreFromHistory = historySlice.actions.removeLastScoreFromHistory;
+export const removeAllFromHistory = historySlice.actions.removeAllFromHistory;
 
 export default historySlice.reducer;

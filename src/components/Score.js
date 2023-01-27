@@ -72,11 +72,12 @@ const Score = (props) => {
   renderTies(props.sheet.ties, context);
   return (
     <View>
-      <DoubleClick doubleTap={addToHistoryHandler} delay={200}>
+      <DoubleClick doubleTap={addToHistoryHandler} delay={10000}>
         <ScoreTitle
           title={props.sheet.number + " - " + props.sheet.title}
           onAddOneToHistory={addToHistoryHandler}
-          onRemoveOneOfHistory={removeLastScoreFromHistory}
+          onRemoveOneOfHistory={removeOneFromHistoryHandler}
+          scoreId={props.id}
         />
         <View style={styles.scoreContainer}>{context.render()}</View>
       </DoubleClick>
