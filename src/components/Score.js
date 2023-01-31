@@ -10,11 +10,12 @@ import { useDispatch } from "react-redux";
 import { addToHistory, removeLastScoreFromHistory } from "../store/history";
 
 const pageWidth = Dimensions.get("window").width - 30;
-const keyWidth = 70;
 const zWidth = 20;
 
 const Score = (props) => {
   const dispatch = useDispatch();
+
+  const keyWidth = (props.sheet.keySignature === "C") ? 50 : 70;
 
   const addToHistoryHandler = () => {
     dispatch(
@@ -50,7 +51,7 @@ const Score = (props) => {
     context
   );
 
-  let currentX = keyWidth;
+  let currentX = keyWidth ;
 
   props.sheet.measures.forEach((measure) => {
     renderStave(
