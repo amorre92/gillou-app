@@ -24,7 +24,7 @@ import TrompetteDesCentGardes from './scores/TrompetteDesCentGardes';
 import ViventLesBleus from './scores/ViventLesBleus';
 import VosArezInAubade from './scores/VosArezInAubade';
 
-const airClassique = AirClassique();
+
 const lionDeBelgique = LionDeBelgique();
 const postillonDeLongjumeau = PostillonDeLongjumeau();
 const sansSouci = SansSouci();
@@ -50,7 +50,8 @@ const marins = Marins();
 const brigands = Brigands();
 const polkaMarche = PolkaMarche();
 
-const ScoreData = () => {
+const ScoreData = ({tone}) => {
+  const airClassique = AirClassique(tone);
   return (
     [
       { key: airClassique.id, value: airClassique },
