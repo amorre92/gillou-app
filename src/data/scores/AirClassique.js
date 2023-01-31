@@ -2,7 +2,7 @@ import AirClassiqueMib from "../scores-mib/AirClassiqueMib";
 import AirClassiqueSib from "../scores-sib/AirClassiqueSib";
 
 const AirClassique = (tone) => {
-  let sheetData = tone === "sib" ? AirClassiqueSib() : AirClassiqueMib();
+  const sheetData = tone === "sib" ? AirClassiqueSib() : AirClassiqueMib();
 
   return {
     id: "air-classique",

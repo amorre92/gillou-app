@@ -24,11 +24,6 @@ import TrompetteDesCentGardes from "./scores/TrompetteDesCentGardes";
 import ViventLesBleus from "./scores/ViventLesBleus";
 import VosArezInAubade from "./scores/VosArezInAubade";
 
-const ambulant = Ambulant();
-const viventLesBleus = ViventLesBleus();
-const paysan = Paysan();
-const eloiACharleroi = EloiACharleroi();
-const cavalcade = Cavalcade();
 const juifErrant = JuifErrant();
 const classe = Classe();
 const serenade = Serenade();
@@ -51,6 +46,11 @@ const ScoreData = (tone) => {
   const postillonDeLongjumeau = PostillonDeLongjumeau(tone);
   const sansSouci = SansSouci(tone);
   const petitJeuneHommeDeBinche = PetitJeuneHommeDeBinche(tone);
+  const ambulant = Ambulant(tone);
+  const viventLesBleus = ViventLesBleus(tone);
+  const paysan = Paysan(tone);
+  const eloiACharleroi = EloiACharleroi(tone);
+  const cavalcade = Cavalcade(tone);
 
   return [
     { key: airClassique.id, value: airClassique },

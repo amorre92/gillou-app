@@ -1,9 +1,8 @@
-import Vex from "vexflow";
 import PetitJeuneHommeDeBincheMib from "../scores-mib/PetitJeuneHommeDeBincheMib";
 import PetitJeuneHommeDeBincheSib from "../scores-sib/PetitJeuneHommeDeBincheSib";
 
 const PetitJeuneHommeDeBinche = (tone) => {
-  let sheetData =
+  const sheetData =
     tone === "sib"
       ? PetitJeuneHommeDeBincheSib()
       : PetitJeuneHommeDeBincheMib();

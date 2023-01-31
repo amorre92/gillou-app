@@ -2,7 +2,7 @@ import LionDeBelgiqueMib from "../scores-mib/LionDeBelgiqueMib";
 import LionDeBelgiqueSib from "../scores-sib/LionDeBelgiqueSib";
 
 const LionDeBelgique = (tone) => {
-  let sheetData = tone === "sib" ? LionDeBelgiqueSib() : LionDeBelgiqueMib();
+  const sheetData = tone === "sib" ? LionDeBelgiqueSib() : LionDeBelgiqueMib();
 
   return {
     id: "lion-de-belgique",

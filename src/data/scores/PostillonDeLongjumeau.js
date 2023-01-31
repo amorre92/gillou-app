@@ -1,9 +1,8 @@
-import Vex from "vexflow";
 import PostillonDeLongjumeauMib from "../scores-mib/PostillonDeLongjumeauMib";
 import PostillonDeLongjumeauSib from "../scores-sib/PostillonDeLongjumeauSib";
 
 const PostillonDeLongjumeau = (tone) => {
-  let sheetData =
+  const sheetData =
     tone === "sib" ? PostillonDeLongjumeauSib() : PostillonDeLongjumeauMib();
 
   return {

@@ -2,7 +2,7 @@ import SansSouciMib from "../scores-mib/SansSouciMib";
 import SansSouciSib from "../scores-sib/SansSouciSib";
 
 const SansSouci = (tone) => {
-  let sheetData = tone === "sib" ? SansSouciSib() : SansSouciMib();
+  const sheetData = tone === "sib" ? SansSouciSib() : SansSouciMib();
 
   return {
     id: "sans-souci",
