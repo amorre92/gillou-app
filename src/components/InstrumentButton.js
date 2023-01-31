@@ -3,7 +3,6 @@ import { CLARINET, TRUMPET } from "../image";
 
 function InstrumentButton({ tone, onPress, size }) {
 
-  const sizeConst = size ? size : 24
   const source = (tone === "sib") ? TRUMPET : CLARINET
   const color = (tone === "sib") ? "#00C9A5" : "#9D8EFF"
 

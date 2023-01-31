@@ -24,17 +24,6 @@ import TrompetteDesCentGardes from "./scores/TrompetteDesCentGardes";
 import ViventLesBleus from "./scores/ViventLesBleus";
 import VosArezInAubade from "./scores/VosArezInAubade";
 
-const vosArezInAubade = VosArezInAubade();
-const arlequin = Arlequin();
-const dginsDeLestene = DginsDeLestene();
-const doudou = Doudou();
-const quandMgrandMere = QuandMgrandMere();
-const chasseurs = Chasseurs();
-const trompetteDesCentGardes = TrompetteDesCentGardes();
-const marins = Marins();
-const brigands = Brigands();
-const polkaMarche = PolkaMarche();
-
 const ScoreData = (tone) => {
   const airClassique = AirClassique(tone);
   const lionDeBelgique = LionDeBelgique(tone);
@@ -51,6 +40,16 @@ const ScoreData = (tone) => {
   const serenade = Serenade(tone);
   const pasDeCharge = PasDeCharge(tone);
   const mereTantPis = MereTantPis(tone);
+  const vosArezInAubade = VosArezInAubade(tone);
+  const arlequin = Arlequin(tone);
+  const dginsDeLestene = DginsDeLestene(tone);
+  const doudou = Doudou(tone);
+  const quandMgrandMere = QuandMgrandMere(tone);
+  const chasseurs = Chasseurs(tone);
+  const trompetteDesCentGardes = TrompetteDesCentGardes(tone);
+  const marins = Marins(tone);
+  const brigands = Brigands(tone);
+  const polkaMarche = PolkaMarche(tone);
 
   return [
     { key: airClassique.id, value: airClassique },

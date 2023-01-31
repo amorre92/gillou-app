@@ -6,16 +6,22 @@ import NotoFontPack from "../vexflow/NotoFontPack";
 import { Barline } from "vexflow/src/stavebarline";
 import DoubleClick from "react-native-double-tap";
 import ScoreTitle from "./ScoreTitle";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToHistory, removeLastScoreFromHistory } from "../store/history";
 
-const pageWidth = Dimensions.get("window").width - 30;
-const zWidth = 20;
+const pageWidth = Dimensions.get("window").width - 10;
 
 const Score = (props) => {
+  const tone = useSelector((state) => state.tone.value);
   const dispatch = useDispatch();
+  const keyWidth =
+    props.sheet.keySignature === "C"
+      ? 50
+      : props.sheet.keySignature === "D"
+      ? 80
+      : 70;
 
-  const keyWidth = (props.sheet.keySignature === "C") ? 50 : 70;
+  const zWidth = (tone === "sib") ? 20 : 30;
 
   const addToHistoryHandler = () => {
     dispatch(
@@ -51,7 +57,7 @@ const Score = (props) => {
     context
   );
 
-  let currentX = keyWidth ;
+  let currentX = keyWidth;
 
   props.sheet.measures.forEach((measure) => {
     renderStave(
