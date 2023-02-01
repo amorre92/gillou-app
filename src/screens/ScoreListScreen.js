@@ -1,26 +1,41 @@
-import { FlatList, StyleSheet } from "react-native";
+import { FlatList, StyleSheet, View } from "react-native";
 import Score from "../components/Score";
 import ScoreData from "../data/ScoreData";
 import { useLayoutEffect } from "react";
 import Button from "../components/Button";
-
-const data = ScoreData();
+import { useDispatch, useSelector } from "react-redux";
+import { switchTone } from "../store/tone";
+import InstrumentButton from "../components/InstrumentButton";
 
 function ScoreListScreen({ navigation }) {
-  function pressHandler() {
+  const tone = useSelector((state) => state.tone.value);
+  const dispatch = useDispatch();
+
+  const data = ScoreData(tone);
+
+  function historyPressHandler() {
     navigation.navigate("Historique");
+  }
+
+  function tonePressHandler() {
+    dispatch(switchTone())
   }
 
   useLayoutEffect(() => {
     navigation.setOptions({
       headerRight: () => {
-        return <Button onPress={pressHandler} name="history" />;
+        return (
+          <View style={styles.headerRightContainer}>
+            <InstrumentButton tone={tone} onPress={tonePressHandler}/>
+            <Button onPress={historyPressHandler} name="history" />
+          </View>
+        );
       },
     });
-  }, [navigation, pressHandler]);
+  }, [navigation, historyPressHandler, tonePressHandler]);
 
   function renderScoreItem(itemData) {
-    return <Score sheet={itemData.item.value} />;
+    return <Score sheet={itemData.item.value} id={itemData.item.key} />;
   }
 
   return (
@@ -33,5 +48,10 @@ export default ScoreListScreen;
 const styles = StyleSheet.create({
   list: {
     flex: 1,
+  },
+  headerRightContainer: {
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    width: 120,
   },
 });

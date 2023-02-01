@@ -1,5 +1,6 @@
 import { View, StyleSheet, Text } from "react-native";
 import { Badge } from "react-native-elements";
+import { useSelector } from "react-redux";
 import Button from "./Button";
 
 const badgeColors = [
@@ -54,8 +55,12 @@ function ScoreTitle({
   title,
   onRemoveOneOfHistory,
   onAddOneToHistory,
-  nbInHistory,
+  scoreId,
 }) {
+  const history = useSelector((state) => state.history);
+  let nbInHistory =
+    history.filter((h) => h.value.scoreId === scoreId).length || 0;
+
   const getBadgeStyle = (nbInHistory) => {
     return {
       backgroundColor:
@@ -106,6 +111,6 @@ const styles = StyleSheet.create({
   },
   badgeContainer: {
     flexDirection: "row",
-    alignSelf: "flex-end"
+    alignSelf: "flex-end",
   },
 });
