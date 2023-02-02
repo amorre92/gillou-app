@@ -1,13 +1,11 @@
 import React from "react";
 import { View, StyleSheet, Dimensions } from "react-native";
-import Vex from "vexflow";
-import ReactNativeSVGContext from "../vexflow/ReactNativeSVGContext";
-import NotoFontPack from "../vexflow/NotoFontPack";
-import { Barline } from "vexflow/src/stavebarline";
 import DoubleClick from "react-native-double-tap";
 import ScoreTitle from "./ScoreTitle";
 import { useDispatch, useSelector } from "react-redux";
 import { addToHistory, removeLastScoreFromHistory } from "../store/history";
+import { Stave, Barline, Formatter } from "vexflow";
+import VexCanvas from "react-native-vexflow-canvas";
 
 const pageWidth = Dimensions.get("window").width - 10;
 
@@ -21,7 +19,7 @@ const Score = (props) => {
       ? 80
       : 70;
 
-  const zWidth = (tone === "sib") ? 20 : 30;
+  const zWidth = tone === "sib" ? 20 : 30;
 
   const addToHistoryHandler = () => {
     dispatch(
@@ -37,46 +35,46 @@ const Score = (props) => {
     dispatch(removeLastScoreFromHistory({ scoreId: props.sheet.scoreId }));
   };
 
-  // create context
-  const context = new ReactNativeSVGContext(NotoFontPack, {
-    width: pageWidth,
-    height: 120,
-  });
-
   const widths = calculateWidths(
     props.sheet.measures,
     pageWidth - keyWidth - zWidth
   );
 
-  // create stave 0 - with key, signature, etc...
-  renderStave0(
-    keyWidth,
-    props.sheet.clef,
-    props.sheet.keySignature,
-    props.sheet.timeSignature,
-    context
-  );
+  const draw = (ref) => {
+    const context = ref.getContext(); // get the context from the canvas.
+    context.clear(); // To have a clean canvas in every render.
 
-  let currentX = keyWidth;
-
-  props.sheet.measures.forEach((measure) => {
-    renderStave(
-      currentX,
-      widths[measure.index],
-      measure.notes,
-      context,
-      measure.index == 0,
-      measure.index + 1 == props.sheet.measures.length
+    // create stave 0 - with key, signature, etc...
+    renderStave0(
+      keyWidth,
+      props.sheet.clef,
+      props.sheet.keySignature,
+      props.sheet.timeSignature,
+      context
     );
-    currentX = currentX + widths[measure.index];
-  });
 
-  renderStaveZ(currentX, zWidth, context);
+    let currentX = keyWidth;
 
-  // Render beams
-  renderBeams(props.sheet.beams, context);
-  // Render ties
-  renderTies(props.sheet.ties, context);
+    props.sheet.measures.forEach((measure) => {
+      renderStave(
+        currentX,
+        widths[measure.index],
+        measure.notes,
+        context,
+        measure.index == 0,
+        measure.index + 1 == props.sheet.measures.length
+      );
+      currentX = currentX + widths[measure.index];
+    });
+
+    renderStaveZ(currentX, zWidth, context);
+
+    // Render beams
+    renderBeams(props.sheet.beams, context);
+    // Render ties
+    renderTies(props.sheet.ties, context);
+  };
+
   return (
     <View>
       <DoubleClick doubleTap={addToHistoryHandler} delay={10000}>
@@ -86,14 +84,16 @@ const Score = (props) => {
           onRemoveOneOfHistory={removeOneFromHistoryHandler}
           scoreId={props.id}
         />
-        <View style={styles.scoreContainer}>{context.render()}</View>
+        <View style={styles.scoreContainer}>
+          <VexCanvas width={pageWidth} height={120} draw={draw} />
+        </View>
       </DoubleClick>
     </View>
   );
 };
 
 const renderStave0 = (width, clef, keySignature, timeSignature, context) => {
-  var staveMeasure0 = new Vex.Flow.Stave(0, 0, width, { right_bar: false });
+  var staveMeasure0 = new Stave(0, 0, width, { right_bar: false });
   staveMeasure0
     .addClef(clef)
     .addKeySignature(keySignature)
@@ -106,14 +106,14 @@ const renderStave0 = (width, clef, keySignature, timeSignature, context) => {
 const renderStave = (x, width, notes, context, first, last) => {
   let options = first ? { left_bar: false } : {};
   options = last ? { ...options, right_bar: false } : options;
-  var stave = new Vex.Flow.Stave(x, 0, width, options);
+  var stave = new Stave(x, 0, width, options);
   stave.setContext(context).draw();
-  Vex.Flow.Formatter.FormatAndDraw(context, stave, notes);
+  Formatter.FormatAndDraw(context, stave, notes);
   return stave;
 };
 
 const renderStaveZ = (x, width, context) => {
-  let staveMeasureZ = new Vex.Flow.Stave(x, 0, width, {
+  let staveMeasureZ = new Stave(x, 0, width, {
     right_bar: false,
     left_bar: false,
   });

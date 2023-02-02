@@ -27,10 +27,10 @@
     "react-native-screens": "~3.18.0",
     "react-native-svg": "13.4.0",
     "react-native-vector-icons": "^9.1.0",
-    "react-native-vexflow": "^0.0.1",
+    "react-native-vexflow-canvas": "^1.0.9",
     "react-native-web": "~0.18.7",
     "react-redux": "^8.0.5",
-    "vexflow": "^1.2.93"
+    "vexflow": "4.1.0"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3"
