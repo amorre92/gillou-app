@@ -12,8 +12,8 @@ function ScoreListScreen({ navigation }) {
   const dispatch = useDispatch();
 
   const getItemLayout = (data, index) => ({
-    length: 100,
-    offset: 100 * index,
+    length: 120,
+    offset: 120 * index,
     index,
   });
 
