@@ -50,9 +50,7 @@ function ScoreListScreen({ navigation }) {
       style={styles.list}
       data={data}
       renderItem={renderScoreItem}
-      initialNumToRender={5}
-      maxToRenderPerBatch={10}
-      windowSize={10}
+      initialNumToRender={25}
     />
   );
 }
