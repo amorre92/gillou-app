@@ -26,8 +26,6 @@ import VosArezInAubade from "./scores/VosArezInAubade";
 
 const ScoreData = (tone) => {
   const airClassique = AirClassique(tone);
-  const eloiACharleroi = EloiACharleroi(tone);
-  /*
   const lionDeBelgique = LionDeBelgique(tone);
   const postillonDeLongjumeau = PostillonDeLongjumeau(tone);
   const sansSouci = SansSouci(tone);
@@ -35,6 +33,7 @@ const ScoreData = (tone) => {
   const ambulant = Ambulant(tone);
   const viventLesBleus = ViventLesBleus(tone);
   const paysan = Paysan(tone);
+  const eloiACharleroi = EloiACharleroi(tone);
   const cavalcade = Cavalcade(tone);
   const juifErrant = JuifErrant(tone);
   const classe = Classe(tone);
@@ -51,17 +50,9 @@ const ScoreData = (tone) => {
   const marins = Marins(tone);
   const brigands = Brigands(tone);
   const polkaMarche = PolkaMarche(tone);
-  */
 
   return [
     { key: airClassique.id, value: airClassique },
-    { key: eloiACharleroi.id, value: eloiACharleroi },
-  ];
-};
-export default ScoreData;
-
-/**
- * ,
     { key: lionDeBelgique.id, value: lionDeBelgique },
     { key: postillonDeLongjumeau.id, value: postillonDeLongjumeau },
     { key: sansSouci.id, value: sansSouci },
@@ -86,4 +77,6 @@ export default ScoreData;
     { key: marins.id, value: marins },
     { key: brigands.id, value: brigands },
     { key: polkaMarche.id, value: polkaMarche },
- */
+  ];
+};
+export default ScoreData;

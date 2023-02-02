@@ -2,7 +2,7 @@ import EloiACharleroiMib from "../scores-mib/EloiACharleroiMib";
 import EloiACharleroiSib from "../scores-sib/EloiACharleroiSib";
 
 const EloiACharleroi = (tone) => {
-  const sheetData = tone === "sib" ? EloiACharleroiSib() : EloiACharleroiSib()//EloiACharleroiMib();
+  const sheetData = tone === "sib" ? EloiACharleroiSib() : EloiACharleroiMib();
 
   return {
     id: "eloi-a-charleroi",

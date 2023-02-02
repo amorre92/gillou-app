@@ -17,9 +17,11 @@ const Score = (props) => {
       ? 50
       : props.sheet.keySignature === "D"
       ? 80
+      : props.sheet.keySignature === "Bb" 
+      ? 80
       : 70;
 
-  const zWidth = tone === "sib" ? 20 : 30;
+  const zWidth = tone === "sib" ? 20 : 20;
 
   const addToHistoryHandler = () => {
     dispatch(
@@ -108,7 +110,7 @@ const renderStave = (x, width, notes, context, first, last) => {
   options = last ? { ...options, right_bar: false } : options;
   var stave = new Stave(x, 0, width, options);
   stave.setContext(context).draw();
-  Formatter.FormatAndDraw(context, stave, notes);
+  Formatter.FormatAndDraw(context, stave, notes, {align_rests: false});
   return stave;
 };
 
