@@ -46,6 +46,7 @@ function HistoryScreen({ navigation }) {
             <Button
               onPress={() => removeFromHistoryHandler(itemData.item.key)}
               name="trash-can"
+              color="#fc861d"
             />
           </ListItem>
         )}
