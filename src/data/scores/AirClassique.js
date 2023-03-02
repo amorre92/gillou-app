@@ -10,7 +10,7 @@ const AirClassique = (tone) => {
     number: 1,
     clef: "treble",
     timeSignature: "2/4",
-    ...sheetData
+    ...sheetData,
   };
 };
 
