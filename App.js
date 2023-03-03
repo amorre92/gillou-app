@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, { useState } from 'react';
 import { StyleSheet, View, FlatList } from 'react-native';
 import History from './src/components/History';
@@ -55,40 +56,46 @@ export default function App() {
   const deleteAllFromHistoryHandler = () => {
     setHistoryData([])
   }
+=======
+import React from "react";
+import { StyleSheet } from "react-native";
+import ScoreListScreen from "./src/screens/ScoreListScreen";
+import HistoryScreen from "./src/screens/HistoryScreen";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from "expo-status-bar";
+import { Provider } from "react-redux";
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./src/store/store";
+
+export default function App() {
+  const Stack = createNativeStackNavigator();
+>>>>>>> master
 
   return (
-    <View style={styles.screen}>
-      <History visible={isHistoryMode} onCloseHistory={closeHistoryHandler} onRemoveFromHistory={removeFromHistoryHandler} onDeleteAll={deleteAllFromHistoryHandler} data={historyData} />
-      <FlatList
-        style={styles.list}
-        data={data}
-        renderItem={
-          itemData => (
-            <Score
-              sheet={itemData.item.value}
-              onAddToHistory={addToHistoryHandler}
-              nbInHistory={historyData.filter((history) => history.value.scoreId === itemData.item.key).length} />)
-        } />
-      <Button
-        title='Historique'
-        onPress={() => setIsHistoryMode(true)}
-        buttonStyle={{
-          borderColor: '#fc861d',
-          marginHorizontal: 10
-        }}
-        type="outline"
-        titleStyle={{ color: '#fc861d' }} />
-    </View>
+    <>
+      <StatusBar backgroundColor="#ebe8e4" style="dark" />
+      <Provider store={store}>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerStyle: { backgroundColor: "#ebe8e4" },
+                headerTintColor: "black",
+              }}
+            >
+              <Stack.Screen name="Annonces" component={ScoreListScreen} />
+              <Stack.Screen name="Historique" component={HistoryScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PersistGate>
+      </Provider>
+    </>
   );
 }
-
 const styles = StyleSheet.create({
   screen: {
     paddingTop: 15,
-    paddingBottom: 50
+    paddingBottom: 50,
   },
-  list: {
-    marginTop: 10,
-    marginBottom: 10
-  }
 });

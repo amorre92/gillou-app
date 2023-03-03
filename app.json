@@ -2,7 +2,7 @@
   "expo": {
     "name": "Gillou",
     "slug": "gillou-app",
-    "version": "1.2.3",
+    "version": "1.5.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
     "splash": {
@@ -11,7 +11,8 @@
       "backgroundColor": "#000000"
     },
     "updates": {
-      "fallbackToCacheTimeout": 0
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/a35fd695-2bb0-4b95-b18a-86e7d6caf476"
     },
     "assetBundlePatterns": [
       "**/*"
@@ -19,7 +20,11 @@
     "ios": {
       "supportsTablet": true,
       "bundleIdentifier": "com.am.gillou",
+<<<<<<< HEAD
       "buildNumber": "1.2.4",
+=======
+      "buildNumber": "1.5.0",
+>>>>>>> master
       "icon": "./assets/icon-ios.png"
     },
     "android": {
@@ -28,11 +33,19 @@
         "backgroundColor": "#000000"
       },
       "package": "com.am.gillou",
-      "versionCode": 6,
+      "versionCode": 11,
       "permissions": []
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "4945ece5-a89c-4dd4-888e-e02aa66bfff2"
+      }
     }
   }
 }

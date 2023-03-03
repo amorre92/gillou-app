@@ -1,29 +1,28 @@
 import AirClassique from "./scores/AirClassique";
-import Ambulant from './scores/Ambulant';
-import Arlequin from './scores/Arlequin';
-import Brigands from './scores/Brigands';
-import Cavalcade from './scores/Cavalcade';
-import Chasseurs from './scores/Chasseurs';
-import Classe from './scores/Classe';
-import DginsDeLestene from './scores/DginsDeLestene';
-import Doudou from './scores/Doudou';
-import EloiACharleroi from './scores/EloiACharleroi';
-import JuifErrant from './scores/JuifErrant';
-import LionDeBelgique from './scores/LionDeBelgique';
-import Marins from './scores/Marins';
-import MereTantPis from './scores/MereTantPis';
-import PasDeCharge from './scores/PasDeCharge';
-import Paysan from './scores/Paysan';
-import PetitJeuneHommeDeBinche from './scores/PetitJeuneHommeDeBinche';
-import PolkaMarche from './scores/PolkaMarche';
-import PostillonDeLongjumeau from './scores/PostillonDeLongjumeau';
-import QuandMgrandMere from './scores/QuandMgrandMere';
-import SansSouci from './scores/SansSouci';
-import Serenade from './scores/Serenade';
-import TrompetteDesCentGardes from './scores/TrompetteDesCentGardes';
-import ViventLesBleus from './scores/ViventLesBleus';
-import VosArezInAubade from './scores/VosArezInAubade';
-import MitantCamps from "./scores/MitantCamps";
+import Ambulant from "./scores/Ambulant";
+import Arlequin from "./scores/Arlequin";
+import Brigands from "./scores/Brigands";
+import Cavalcade from "./scores/Cavalcade";
+import Chasseurs from "./scores/Chasseurs";
+import Classe from "./scores/Classe";
+import DginsDeLestene from "./scores/DginsDeLestene";
+import Doudou from "./scores/Doudou";
+import EloiACharleroi from "./scores/EloiACharleroi";
+import JuifErrant from "./scores/JuifErrant";
+import LionDeBelgique from "./scores/LionDeBelgique";
+import Marins from "./scores/Marins";
+import MereTantPis from "./scores/MereTantPis";
+import PasDeCharge from "./scores/PasDeCharge";
+import Paysan from "./scores/Paysan";
+import PetitJeuneHommeDeBinche from "./scores/PetitJeuneHommeDeBinche";
+import PolkaMarche from "./scores/PolkaMarche";
+import PostillonDeLongjumeau from "./scores/PostillonDeLongjumeau";
+import QuandMgrandMere from "./scores/QuandMgrandMere";
+import SansSouci from "./scores/SansSouci";
+import Serenade from "./scores/Serenade";
+import TrompetteDesCentGardes from "./scores/TrompetteDesCentGardes";
+import ViventLesBleus from "./scores/ViventLesBleus";
+import VosArezInAubade from "./scores/VosArezInAubade";
 
 const airClassique = AirClassique();
 const lionDeBelgique = LionDeBelgique();
@@ -50,7 +49,6 @@ const trompetteDesCentGardes = TrompetteDesCentGardes();
 const marins = Marins();
 const brigands = Brigands();
 const polkaMarche = PolkaMarche();
-const mitantCamps = MitantCamps();
 
 const ScoreData = () => {
   return (
@@ -79,8 +77,7 @@ const ScoreData = () => {
       { key: trompetteDesCentGardes.id, value: trompetteDesCentGardes },
       { key: marins.id, value: marins },
       { key: brigands.id, value: brigands },
-      { key: polkaMarche.id, value: polkaMarche },
-      { key: mitantCamps.id, value: mitantCamps }
+      { key: polkaMarche.id, value: polkaMarche }
     ]
   )
 }
