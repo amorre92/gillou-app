@@ -19,6 +19,7 @@ function ScoreListScreen({ navigation }) {
 
   function tonePressHandler() {
     dispatch(switchTone())
+    console.log(tone.value)
   }
 
   useLayoutEffect(() => {

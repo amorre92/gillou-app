@@ -5,11 +5,13 @@ const toneSlice = createSlice({
     initialState: { value: "sib"},
     reducers: {
         switchTone: (state) => {
+            console.log("Change Tone")
             if (state.value === "sib") {
                 state.value = "mib"
             } else {
                 state.value = "sib"
             }
+            
         }
     }
 })
