@@ -6,7 +6,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { StatusBar } from "expo-status-bar";
 import { Provider } from "react-redux";
-import { store } from "./src/store/store"
+import { PersistGate } from "redux-persist/integration/react";
+import store, { persistor } from "./src/store/store";
 
 export default function App() {
   const Stack = createNativeStackNavigator();
@@ -15,17 +16,19 @@ export default function App() {
     <>
       <StatusBar backgroundColor="#ebe8e4" style="dark" />
       <Provider store={store}>
-        <NavigationContainer>
-          <Stack.Navigator
-            screenOptions={{
-              headerStyle: { backgroundColor: "#ebe8e4" },
-              headerTintColor: "black",
-            }}
-          >
-            <Stack.Screen name="Annonces" component={ScoreListScreen} />
-            <Stack.Screen name="Historique" component={HistoryScreen} />
-          </Stack.Navigator>
-        </NavigationContainer>
+        <PersistGate loading={null} persistor={persistor}>
+          <NavigationContainer>
+            <Stack.Navigator
+              screenOptions={{
+                headerStyle: { backgroundColor: "#ebe8e4" },
+                headerTintColor: "black",
+              }}
+            >
+              <Stack.Screen name="Annonces" component={ScoreListScreen} />
+              <Stack.Screen name="Historique" component={HistoryScreen} />
+            </Stack.Navigator>
+          </NavigationContainer>
+        </PersistGate>
       </Provider>
     </>
   );

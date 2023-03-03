@@ -11,6 +11,12 @@ function ScoreListScreen({ navigation }) {
   const tone = useSelector((state) => state.tone.value);
   const dispatch = useDispatch();
 
+  const getItemLayout = (data, index) => ({
+    length: 120,
+    offset: 120 * index,
+    index,
+  });
+
   const data = ScoreData(tone);
 
   function historyPressHandler() {
@@ -18,8 +24,7 @@ function ScoreListScreen({ navigation }) {
   }
 
   function tonePressHandler() {
-    dispatch(switchTone())
-    console.log(tone.value)
+    dispatch(switchTone());
   }
 
   useLayoutEffect(() => {
@@ -27,7 +32,7 @@ function ScoreListScreen({ navigation }) {
       headerRight: () => {
         return (
           <View style={styles.headerRightContainer}>
-            <InstrumentButton tone={tone} onPress={tonePressHandler}/>
+            <InstrumentButton tone={tone} onPress={tonePressHandler} />
             <Button onPress={historyPressHandler} name="history" />
           </View>
         );
@@ -40,7 +45,13 @@ function ScoreListScreen({ navigation }) {
   }
 
   return (
-    <FlatList style={styles.list} data={data} renderItem={renderScoreItem} />
+    <FlatList
+      getItemLayout={getItemLayout}
+      style={styles.list}
+      data={data}
+      renderItem={renderScoreItem}
+      initialNumToRender={25}
+    />
   );
 }
 
