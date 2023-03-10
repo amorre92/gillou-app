@@ -1,3 +1,4 @@
+import React from "react";
 import HistoryScreen from "../../screens/HistoryScreen";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import DrawerNavigator from "./DrawerNavigator";
@@ -6,6 +7,9 @@ import { PRIMARY } from "../../constant/Colors";
 function StackNavigator() {
   const Stack = createNativeStackNavigator();
 
+  /**
+   *
+   */
   return (
     <Stack.Navigator
       screenOptions={{

@@ -1,3 +1,4 @@
+import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import CustomSidebarMenu from "../CustomSidebarMenu";

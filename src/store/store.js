@@ -10,7 +10,7 @@ import {
   REHYDRATE,
 } from "redux-persist";
 import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 import historyReducer from "./history";
 import toneReducer from "./tone";
 
@@ -29,11 +29,12 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);
