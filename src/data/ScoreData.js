@@ -25,8 +25,16 @@ import ViventLesBleus from "./scores/ViventLesBleus";
 import VosArezInAubade from "./scores/VosArezInAubade";
 import MitantDesCamps from "./scores/MitantDesCamps";
 import AubadeMatinale from "./scores/AubadeMatinale";
+import { useSelector } from "react-redux";
 
 const ScoreData = (tone) => {
+  const includeAubadeMatinale = useSelector(
+    (state) => state.score.includeAubadeMatinale
+  );
+  const includeMitantDesCamps = useSelector(
+    (state) => state.score.includeMitantDesCamps
+  );
+
   const airClassique = AirClassique(tone);
   const lionDeBelgique = LionDeBelgique(tone);
   const postillonDeLongjumeau = PostillonDeLongjumeau(tone);
@@ -52,10 +60,8 @@ const ScoreData = (tone) => {
   const marins = Marins(tone);
   const brigands = Brigands(tone);
   const polkaMarche = PolkaMarche(tone);
-  const aubadeMatinale = AubadeMatinale(tone);
-  const mitantDesCamps = MitantDesCamps(tone);
 
-  return [
+  let data = [
     { key: airClassique.id, value: airClassique },
     { key: lionDeBelgique.id, value: lionDeBelgique },
     { key: postillonDeLongjumeau.id, value: postillonDeLongjumeau },
@@ -81,8 +87,18 @@ const ScoreData = (tone) => {
     { key: marins.id, value: marins },
     { key: brigands.id, value: brigands },
     { key: polkaMarche.id, value: polkaMarche },
-    { key: aubadeMatinale.id, value: aubadeMatinale },
-    { key: mitantDesCamps.id, value: mitantDesCamps },
   ];
+
+  if (includeAubadeMatinale) {
+    const aubadeMatinale = AubadeMatinale(tone);
+    data.push({ key: aubadeMatinale.id, value: aubadeMatinale });
+  }
+
+  if (includeMitantDesCamps) {
+    const mitantDesCamps = MitantDesCamps(tone);
+    data.push({ key: mitantDesCamps.id, value: mitantDesCamps });
+  }
+
+  return data;
 };
 export default ScoreData;
