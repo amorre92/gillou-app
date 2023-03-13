@@ -1,3 +1,4 @@
+import { ELOI_A_CHARLEROI_ID } from "../ScoreIdentifiers";
 import EloiACharleroiMib from "../scores-mib/EloiACharleroiMib";
 import EloiACharleroiSib from "../scores-sib/EloiACharleroiSib";
 
@@ -5,9 +6,7 @@ const EloiACharleroi = (tone) => {
   const sheetData = tone === "sib" ? EloiACharleroiSib() : EloiACharleroiMib();
 
   return {
-    id: "eloi-a-charleroi",
-    title: "Eloi à charleroi",
-    number: 9,
+    ...ELOI_A_CHARLEROI_ID,
     clef: "treble",
     timeSignature: "2/4",
     ...sheetData,

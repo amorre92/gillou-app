@@ -9,7 +9,12 @@ import {
 } from "react-native";
 import InstrumentSwitchSelector from "../components/InstrumentSwitchSelector";
 import { useSelector, useDispatch } from "react-redux";
-import { switchAubadeMatinale, switchMitantDesCamps } from "../store/score";
+import {
+  changeOrder,
+  switchAubadeMatinale,
+  switchMitantDesCamps,
+  switchShowNumber,
+} from "../store/score";
 import AnimatedCheckbox from "react-native-checkbox-reanimated";
 import { PRIMARY } from "../constant/Colors";
 
@@ -21,13 +26,19 @@ function OptionScreen({ navigation }) {
   const includeMitantDesCamps = useSelector(
     (state) => state.score.includeMitantDesCamps
   );
+  const showScoreNumber = useSelector((state) => state.score.showNumber);
   const switchAubadeMatinaleHandler = () => {
     dispatch(switchAubadeMatinale());
   };
   const switchMitantDesCampsHandler = () => {
     dispatch(switchMitantDesCamps());
   };
-  // see https://github.com/craftzdog/react-native-checkbox-reanimated
+  const switchShowScoreNumberHandler = () => {
+    dispatch(switchShowNumber());
+  };
+  const changeOrderHandler = () => {
+    dispatch(changeOrder());
+  };
 
   return (
     <View style={styles.container}>
@@ -36,9 +47,7 @@ function OptionScreen({ navigation }) {
           <Text style={styles.text}>Tonalité</Text>
           <InstrumentSwitchSelector />
         </View>
-        <View
-          style={styles.line}
-        />
+        <View style={styles.line} />
         <View style={styles.row}>
           <Text style={styles.text}>Inclure Aubade matinale</Text>
           <Pressable
@@ -67,6 +76,29 @@ function OptionScreen({ navigation }) {
             />
           </Pressable>
         </View>
+        <View style={styles.row}>
+          <Text style={styles.text}>Montrer le numéro des airs</Text>
+          <Pressable
+            onPress={switchShowScoreNumberHandler}
+            style={styles.checkbox}
+          >
+            <AnimatedCheckbox
+              checked={showScoreNumber}
+              highlightColor={PRIMARY}
+              checkmarkColor={PRIMARY}
+              boxOutlineColor="black"
+            />
+          </Pressable>
+        </View>
+        <View style={styles.row}>
+          <Text style={styles.text}>Change order</Text>
+          <Pressable
+            onPress={changeOrderHandler}
+            style={styles.checkbox}
+          >
+            <Text>PUSH HERE</Text>
+          </Pressable>
+        </View>
       </ScrollView>
     </View>
   );
@@ -88,7 +120,7 @@ const styles = StyleSheet.create({
     paddingBottom: 10,
   },
   text: {
-    fontSize: 15,
+    fontSize: 16,
   },
   checkbox: {
     width: 30,
@@ -97,6 +129,6 @@ const styles = StyleSheet.create({
   line: {
     borderTopColor: "black",
     borderTopWidth: 1,
-    paddingBottom: 10
-  }
+    paddingBottom: 10,
+  },
 });

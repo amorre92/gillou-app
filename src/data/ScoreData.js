@@ -92,7 +92,7 @@ const ScoreData = (tone) => {
   if (includeAubadeMatinale) {
     const aubadeMatinale = AubadeMatinale(tone);
     data.push({ key: aubadeMatinale.id, value: aubadeMatinale });
-  }
+  } 
 
   if (includeMitantDesCamps) {
     const mitantDesCamps = MitantDesCamps(tone);

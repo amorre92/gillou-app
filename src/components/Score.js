@@ -11,13 +11,19 @@ const pageWidth = Dimensions.get("window").width - 10;
 
 const Score = (props) => {
   const tone = useSelector((state) => state.tone.value);
+  const showScoreNumber = useSelector((state) => state.score.showNumber);
+
+  const scoreTitle = showScoreNumber
+    ? props.sheet.number + " - " + props.sheet.title
+    : props.sheet.title;
+
   const dispatch = useDispatch();
   const keyWidth =
     props.sheet.keySignature === "C"
       ? 50
       : props.sheet.keySignature === "D"
       ? 80
-      : props.sheet.keySignature === "Bb" 
+      : props.sheet.keySignature === "Bb"
       ? 80
       : 70;
 
@@ -81,7 +87,7 @@ const Score = (props) => {
     <View>
       <DoubleClick doubleTap={addToHistoryHandler} delay={10000}>
         <ScoreTitle
-          title={props.sheet.number + " - " + props.sheet.title}
+          title={scoreTitle}
           onAddOneToHistory={addToHistoryHandler}
           onRemoveOneOfHistory={removeOneFromHistoryHandler}
           scoreId={props.id}
@@ -110,7 +116,7 @@ const renderStave = (x, width, notes, context, first, last) => {
   options = last ? { ...options, right_bar: false } : options;
   var stave = new Stave(x, 0, width, options);
   stave.setContext(context).draw();
-  Formatter.FormatAndDraw(context, stave, notes, {align_rests: false});
+  Formatter.FormatAndDraw(context, stave, notes, { align_rests: false });
   return stave;
 };
 

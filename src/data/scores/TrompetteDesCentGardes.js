@@ -1,3 +1,4 @@
+import { TROMPETTE_DES_CENT_GARDES_ID } from "../ScoreIdentifiers";
 import TrompetteDesCentGardesMib from "../scores-mib/TrompetteDesCentGardesMib";
 import TrompetteDesCentGardesSib from "../scores-sib/TrompetteDesCentGardesSib";
 
@@ -6,9 +7,7 @@ const TrompetteDesCentGardes = (tone) => {
     tone === "sib" ? TrompetteDesCentGardesSib() : TrompetteDesCentGardesMib();
 
   return {
-    id: "trompette-des-cent-gardes",
-    title: "Trompette des cent gardes",
-    number: 22,
+    ...TROMPETTE_DES_CENT_GARDES_ID,
     clef: "treble",
     timeSignature: "2/4",
     ...sheetData,
