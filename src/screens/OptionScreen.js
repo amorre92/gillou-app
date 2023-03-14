@@ -1,11 +1,5 @@
 import React from "react";
-import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-  Pressable,
-} from "react-native";
+import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
 import InstrumentSwitchSelector from "../components/InstrumentSwitchSelector";
 import { useSelector, useDispatch } from "react-redux";
 import {
@@ -16,8 +10,8 @@ import {
 } from "../store/score";
 import AnimatedCheckbox from "react-native-checkbox-reanimated";
 import { PRIMARY } from "../constant/Colors";
-import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import { ALL_SCORE_INITIAL_ORDER } from "../data/ScoreIdentifiers";
+import Button from "../components/Button";
 
 function OptionScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -28,6 +22,12 @@ function OptionScreen({ navigation }) {
     (state) => state.score.includeMitantDesCamps
   );
   const showScoreNumber = useSelector((state) => state.score.showNumber);
+
+  const disableInitOrder =
+    useSelector((state) => state.score.order) == ALL_SCORE_INITIAL_ORDER;
+
+  console.log(disableInitOrder);
+
   const switchAubadeMatinaleHandler = () => {
     dispatch(switchAubadeMatinale());
   };
@@ -38,7 +38,7 @@ function OptionScreen({ navigation }) {
     dispatch(switchShowNumber());
   };
   const reinitOrderHandler = () => {
-    dispatch(updateOrder({scoreOrder: ALL_SCORE_INITIAL_ORDER}));
+    dispatch(updateOrder({ scoreOrder: ALL_SCORE_INITIAL_ORDER }));
   };
 
   return (
@@ -94,16 +94,13 @@ function OptionScreen({ navigation }) {
         <View style={styles.line} />
         <View style={styles.row}>
           <Text style={styles.text}>Réinitialiser ordre</Text>
-          <Pressable
+          <Button
+            name={disableInitOrder ? "check-circle-outline" : "reload"}
+            size={26}
+            color="black"
             onPress={reinitOrderHandler}
-            style={styles.checkbox}
-          >
-            <Icon
-              name={"reload"}
-              size={30}
-              color="black"
-            />
-          </Pressable>
+            disabled={disableInitOrder}
+          />
         </View>
       </ScrollView>
     </View>
@@ -129,8 +126,9 @@ const styles = StyleSheet.create({
     fontSize: 16,
   },
   checkbox: {
-    width: 30,
+    width: 45,
     height: 30,
+    alignItems: "center",
   },
   line: {
     borderTopColor: "black",
