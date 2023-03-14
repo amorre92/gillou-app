@@ -7,7 +7,6 @@ import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { switchTone } from "../store/tone";
 import InstrumentButton from "../components/InstrumentButton";
-import Spinner from "react-native-loading-spinner-overlay";
 import { PRIMARY } from "../constant/Colors";
 
 function ScoreListScreen({ navigation }) {

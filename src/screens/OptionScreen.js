@@ -26,8 +26,6 @@ function OptionScreen({ navigation }) {
   const disableInitOrder =
     useSelector((state) => state.score.order) == ALL_SCORE_INITIAL_ORDER;
 
-  console.log(disableInitOrder);
-
   const switchAubadeMatinaleHandler = () => {
     dispatch(switchAubadeMatinale());
   };
