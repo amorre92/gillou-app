@@ -23,6 +23,7 @@
     "react-native": "0.70.5",
     "react-native-checkbox-reanimated": "^0.1.1",
     "react-native-double-tap": "^1.0.1",
+    "react-native-draggable-flatlist": "^4.0.1",
     "react-native-elements": "^3.4.2",
     "react-native-gesture-handler": "~2.8.0",
     "react-native-reanimated": "~2.12.0",

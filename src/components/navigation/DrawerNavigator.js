@@ -2,9 +2,10 @@ import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import CustomSidebarMenu from "../CustomSidebarMenu";
-import ScoreListScreen from "../../screens/ScoreListScreen"
+import ScoreListScreen from "../../screens/ScoreListScreen";
 import OptionScreen from "../../screens/OptionScreen";
 import { PRIMARY, SECONDARY } from "../../constant/Colors";
+import OrderScoreListScreen from "../../screens/OrderScoreListScreen";
 
 function DrawerNavigator() {
   const Drawer = createDrawerNavigator();
@@ -31,6 +32,19 @@ function DrawerNavigator() {
           drawerIcon: ({ focused, size }) => (
             <Icon
               name={focused ? "book-music" : "book-music-outline"}
+              size={size}
+              color="black"
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="Ordre des annonces"
+        component={OrderScoreListScreen}
+        options={{
+          drawerIcon: ({ focused, size }) => (
+            <Icon
+              name={focused ? "order-bool-ascending" : "order-bool-descending"}
               size={size}
               color="black"
             />

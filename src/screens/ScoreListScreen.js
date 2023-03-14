@@ -9,7 +9,7 @@ import InstrumentButton from "../components/InstrumentButton";
 
 function ScoreListScreen({ navigation }) {
   const tone = useSelector((state) => state.tone.value);
-  const order = useSelector((state) => state.score.order).map(o => o.id);
+  const order = useSelector((state) => state.score.order).map((o) => o.id);
   const dispatch = useDispatch();
 
   const getItemLayout = (data, index) => ({
@@ -19,8 +19,9 @@ function ScoreListScreen({ navigation }) {
   });
 
   const data = ScoreData(tone);
-  const orderedData = data.sort((a, b) => (order.indexOf(a.key) > order.indexOf(b.key)) ? 1 : -1)
-  //const orderedData = order.map(o => data.find(e => e.key === o.id))
+  const orderedData = data.sort((a, b) =>
+    order.indexOf(a.key) > order.indexOf(b.key) ? 1 : -1
+  );
 
   function historyPressHandler() {
     navigation.navigate("Historique");

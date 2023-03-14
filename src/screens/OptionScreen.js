@@ -4,19 +4,20 @@ import {
   StyleSheet,
   Text,
   View,
-  CheckBox,
   Pressable,
 } from "react-native";
 import InstrumentSwitchSelector from "../components/InstrumentSwitchSelector";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  changeOrder,
   switchAubadeMatinale,
   switchMitantDesCamps,
   switchShowNumber,
+  updateOrder,
 } from "../store/score";
 import AnimatedCheckbox from "react-native-checkbox-reanimated";
 import { PRIMARY } from "../constant/Colors";
+import Icon from "react-native-vector-icons/MaterialCommunityIcons";
+import { ALL_SCORE_INITIAL_ORDER } from "../data/ScoreIdentifiers";
 
 function OptionScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -36,8 +37,8 @@ function OptionScreen({ navigation }) {
   const switchShowScoreNumberHandler = () => {
     dispatch(switchShowNumber());
   };
-  const changeOrderHandler = () => {
-    dispatch(changeOrder());
+  const reinitOrderHandler = () => {
+    dispatch(updateOrder({scoreOrder: ALL_SCORE_INITIAL_ORDER}));
   };
 
   return (
@@ -90,13 +91,18 @@ function OptionScreen({ navigation }) {
             />
           </Pressable>
         </View>
+        <View style={styles.line} />
         <View style={styles.row}>
-          <Text style={styles.text}>Change order</Text>
+          <Text style={styles.text}>Réinitialiser ordre</Text>
           <Pressable
-            onPress={changeOrderHandler}
+            onPress={reinitOrderHandler}
             style={styles.checkbox}
           >
-            <Text>PUSH HERE</Text>
+            <Icon
+              name={"reload"}
+              size={30}
+              color="black"
+            />
           </Pressable>
         </View>
       </ScrollView>

@@ -1,9 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import {
-  AIR_CLASSIQUE_ID,
-  ALL_SCORE_INITIAL_ORDER,
-  AMBULANT_ID,
-} from "../data/ScoreIdentifiers";
+import { ALL_SCORE_INITIAL_ORDER } from "../data/ScoreIdentifiers";
 
 const scoreSlice = createSlice({
   name: "score",
@@ -23,8 +19,8 @@ const scoreSlice = createSlice({
     switchShowNumber: (state) => {
       state.showNumber = !state.showNumber;
     },
-    changeOrder: (state) => {
-      state.order = state.order.reverse();
+    updateOrder: (state, action) => {
+      state.order = action.payload.scoreOrder;
     },
   },
 });
@@ -32,6 +28,6 @@ const scoreSlice = createSlice({
 export const switchAubadeMatinale = scoreSlice.actions.switchAubadeMatinale;
 export const switchMitantDesCamps = scoreSlice.actions.switchMitantDesCamps;
 export const switchShowNumber = scoreSlice.actions.switchShowNumber;
-export const changeOrder = scoreSlice.actions.changeOrder;
+export const updateOrder = scoreSlice.actions.updateOrder;
 
 export default scoreSlice.reducer;
