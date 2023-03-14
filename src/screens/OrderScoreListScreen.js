@@ -3,6 +3,7 @@ import DraggableFlatList, {
   ScaleDecorator,
 } from "react-native-draggable-flatlist";
 import { useDispatch, useSelector } from "react-redux";
+import { SECONDARY } from "../constant/Colors";
 import { updateOrder } from "../store/score";
 
 function OrderScoreListScreen() {
@@ -10,7 +11,6 @@ function OrderScoreListScreen() {
   const dispatch = useDispatch();
 
   const updateScoreOrderHandler = (scoreOrder) => {
-    console.log(scoreOrder)
     dispatch(updateOrder({scoreOrder: scoreOrder}));
   };
 
@@ -22,7 +22,7 @@ function OrderScoreListScreen() {
           disabled={isActive}
           style={[
             styles.rowItem,
-            { backgroundColor: isActive ? '#fddfc7ff' : 'white' },
+            { backgroundColor: isActive ? SECONDARY : 'white' },
           ]}
         >
           <Text style={styles.text}>{item.number + " - " + item.title}</Text>
