@@ -8,10 +8,10 @@ import {
   switchShowNumber,
   updateOrder,
 } from "../store/score";
-import AnimatedCheckbox from "react-native-checkbox-reanimated";
 import { PRIMARY } from "../constant/Colors";
 import { ALL_SCORE_INITIAL_ORDER } from "../data/ScoreIdentifiers";
 import Button from "../components/Button";
+import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 function OptionScreen({ navigation }) {
   const dispatch = useDispatch();
@@ -49,56 +49,52 @@ function OptionScreen({ navigation }) {
         <View style={styles.line} />
         <View style={styles.row}>
           <Text style={styles.text}>Inclure Aubade matinale</Text>
-          <Pressable
+          <BouncyCheckbox
+            size={25}
+            fillColor={PRIMARY}
+            unfillColor="#FFFFFF"
+            iconStyle={{ borderColor: PRIMARY }}
+            innerIconStyle={{ borderWidth: 2 }}
             onPress={switchAubadeMatinaleHandler}
-            style={styles.checkbox}
-          >
-            <AnimatedCheckbox
-              checked={includeAubadeMatinale}
-              highlightColor={PRIMARY}
-              checkmarkColor={PRIMARY}
-              boxOutlineColor="black"
-            />
-          </Pressable>
+            isChecked={includeAubadeMatinale}
+          />
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Inclure Mitant des camps</Text>
-          <Pressable
+          <BouncyCheckbox
+            size={25}
+            fillColor={PRIMARY}
+            unfillColor="#FFFFFF"
+            iconStyle={{ borderColor: PRIMARY }}
+            innerIconStyle={{ borderWidth: 2 }}
             onPress={switchMitantDesCampsHandler}
-            style={styles.checkbox}
-          >
-            <AnimatedCheckbox
-              checked={includeMitantDesCamps}
-              highlightColor={PRIMARY}
-              checkmarkColor={PRIMARY}
-              boxOutlineColor="black"
-            />
-          </Pressable>
+            isChecked={includeMitantDesCamps}
+          />
         </View>
         <View style={styles.row}>
           <Text style={styles.text}>Montrer le numéro des airs</Text>
-          <Pressable
+          <BouncyCheckbox
+            size={25}
+            fillColor={PRIMARY}
+            unfillColor="#FFFFFF"
+            iconStyle={{ borderColor: PRIMARY }}
+            innerIconStyle={{ borderWidth: 2 }}
             onPress={switchShowScoreNumberHandler}
-            style={styles.checkbox}
-          >
-            <AnimatedCheckbox
-              checked={showScoreNumber}
-              highlightColor={PRIMARY}
-              checkmarkColor={PRIMARY}
-              boxOutlineColor="black"
-            />
-          </Pressable>
+            isChecked={showScoreNumber}
+          />
         </View>
         <View style={styles.line} />
         <View style={styles.row}>
           <Text style={styles.text}>Réinitialiser ordre</Text>
-          <Button
-            name={disableInitOrder ? "check-circle-outline" : "reload"}
-            size={26}
-            color="black"
-            onPress={reinitOrderHandler}
-            disabled={disableInitOrder}
-          />
+          <View style={styles.buttonExtra}>
+            <Button
+              name={disableInitOrder ? "check-circle-outline" : "reload"}
+              size={25}
+              color="black"
+              onPress={reinitOrderHandler}
+              disabled={disableInitOrder}
+            />
+          </View>
         </View>
       </ScrollView>
     </View>
@@ -133,4 +129,7 @@ const styles = StyleSheet.create({
     borderTopWidth: 1,
     paddingBottom: 10,
   },
+  buttonExtra: {
+    width: 47,
+  }
 });
