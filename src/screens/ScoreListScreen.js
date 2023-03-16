@@ -1,4 +1,5 @@
-import { FlatList, StyleSheet, View } from "react-native";
+import React, { useState, useEffect } from "react";
+import { ActivityIndicator, FlatList, StyleSheet, View } from "react-native";
 import Score from "../components/Score";
 import ScoreData from "../data/ScoreData";
 import { useLayoutEffect } from "react";
@@ -6,10 +7,22 @@ import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { switchTone } from "../store/tone";
 import InstrumentButton from "../components/InstrumentButton";
+import { PRIMARY } from "../constant/Colors";
 
 function ScoreListScreen({ navigation }) {
   const tone = useSelector((state) => state.tone.value);
+  const order = useSelector((state) => state.score.order).map((o) => o.id);
+  const [showSpinner, setShowSpinner] = useState(false);
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (showSpinner) {
+      dispatch(switchTone());
+      setTimeout(() => {
+        setShowSpinner(false);
+      }, 10);
+    }
+  }, [showSpinner]);
 
   const getItemLayout = (data, index) => ({
     length: 120,
@@ -18,13 +31,16 @@ function ScoreListScreen({ navigation }) {
   });
 
   const data = ScoreData(tone);
+  const orderedData = data.sort((a, b) =>
+    order.indexOf(a.key) > order.indexOf(b.key) ? 1 : -1
+  );
 
   function historyPressHandler() {
     navigation.navigate("Historique");
   }
 
   function tonePressHandler() {
-    dispatch(switchTone());
+    setShowSpinner(true);
   }
 
   useLayoutEffect(() => {
@@ -45,21 +61,31 @@ function ScoreListScreen({ navigation }) {
   }
 
   return (
-    <FlatList
-      getItemLayout={getItemLayout}
-      style={styles.list}
-      data={data}
-      renderItem={renderScoreItem}
-      initialNumToRender={25}
-    />
+    <View style={styles.container}>
+      {showSpinner && <ActivityIndicator size="large" color={PRIMARY} />}
+      {!showSpinner && (
+        <FlatList
+          getItemLayout={getItemLayout}
+          data={orderedData}
+          renderItem={renderScoreItem}
+          initialNumToRender={25}
+        />
+      )}
+    </View>
   );
 }
 
 export default ScoreListScreen;
 
 const styles = StyleSheet.create({
-  list: {
+  container: {
     flex: 1,
+    backgroundColor: "white",
+    alignContent: "center", 
+    justifyContent: "center"
+  },
+  spinnerTextStyle: {
+    color: PRIMARY,
   },
   headerRightContainer: {
     flexDirection: "row",

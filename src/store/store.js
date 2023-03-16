@@ -9,10 +9,11 @@ import {
   REGISTER,
   REHYDRATE,
 } from "redux-persist";
-import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
-import { combineReducers } from 'redux';
+import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers } from "redux";
 import historyReducer from "./history";
 import toneReducer from "./tone";
+import scoreReducer from "./score";
 
 const persistConfig = {
   key: "root",
@@ -23,17 +24,19 @@ const persistConfig = {
 const rootReducer = combineReducers({
   history: historyReducer,
   tone: toneReducer,
+  score: scoreReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
   reducer: persistedReducer,
-  middleware: getDefaultMiddleware({
-    serializableCheck: {
-      ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-    },
-  }),
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }),
 });
 
 export const persistor = persistStore(store);

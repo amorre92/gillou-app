@@ -6,6 +6,7 @@ import { useLayoutEffect } from "react";
 import Button from "../components/Button";
 import { useDispatch, useSelector } from "react-redux";
 import { removeAllFromHistory, removeFromHistory } from "../store/history";
+import { PRIMARY } from "../constant/Colors";
 
 function HistoryScreen({ navigation }) {
   const history = useSelector((state) => state.history);
@@ -46,6 +47,7 @@ function HistoryScreen({ navigation }) {
             <Button
               onPress={() => removeFromHistoryHandler(itemData.item.key)}
               name="trash-can"
+              color={PRIMARY}
             />
           </ListItem>
         )}
